@@ -1,10 +1,3 @@
-# Modernization using Angular framework
-
-Prior to modern javascript frameworks in single page application paradigm, the expectation of how to accomplish a ux design that is near perfect equivalent was FRAMESET/FRAME in a HTML 4 world. Now that there are several frameworks like Angular that mimic this design, it is easier to implement and take the UX to a superior level. 
-This is a case study of migrating a pharmaceutical life sciences based application from legacy Frames into an advanced angular based application. Certain experiences like file upload can be preserved by utilizing latest Java API.
-
-
-
 Technologies and configuration
 jakarta commons-lang 2.5
 jakarta commons-beanutils 1.8.0
@@ -26,3 +19,28 @@ set "JRE_HOME=C:/Users\s.s.thotakura\Documents\jre-8u91-windows-x64\jre1.8.0_91"
 set "CATALINA_HOME=C:\Users\s.s.thotakura\Documents\AutoDD\UIREV AMPlapache-tomcat-8.0.35 lapache-tomcat-8.0.35"
 exit /b 0
 
+web.xml
+<servlet>
+    <servlet-name>fileupload</servlet-name>
+    <servlet-class>client.FileUploadServlet</servlet-class>
+    <async-supported>true</async-supported> 
+    <multipart-config>
+        <location>/autoDcd/tmp</location>
+        <max-file-size >20848820</max-file-size>
+        <max-request-size>418018841</max-request-size> 
+        <file-size-threshold>1048576</file-size-threshold>
+    </multipart-config>
+</servlet>
+<servlet-mapping>
+    <servlet-name>fileupload</servlet-name>
+    <url-pattern>/FileUploadServlet/upload</url-pattern>
+</servlet-mapping>
+<servlet>
+    <servlet-name>servejson</servlet-name>
+    <servlet-class>client.ServeJSON</servlet-class>
+    <async-supported>true</async-supported>
+</servlet>
+<servlet-mapping>
+    <servlet-name>servejson</servlet-name> 
+    <url-pattern>/ServeJSON</url-pattern>
+</servlet-mapping>

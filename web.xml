@@ -1,0 +1,24 @@
+<servlet>
+    <servlet-name>fileupload</servlet-name>
+    <servlet-class>client.FileUploadServlet</servlet-class>
+    <async-supported>true</async-supported>
+    <multipart-config>
+        <location>/autoDcd/tmp</location>
+        <max-file-size >20848820</max-file-size>
+        <max-request-size>418018841</max-request-size>
+        <file-size-threshold>1048576</file-size-threshold>
+    </multipart-config>
+</servlet>
+<servlet-mapping>
+    <servlet-name>fileupload</servlet-name>
+    <url-pattern>/FileUploadServlet/upload</url-pattern>
+</servlet-mapping>
+<servlet>
+    <servlet-name>servejson</servlet-name>
+    <servlet-class>client.ServeJSON</servlet-class>
+    <async-supported>true</async-supported>
+</servlet>
+<servlet-mapping>
+    <servlet-name>servejson</servlet-name>
+    <url-pattern>/ServeJSON</url-pattern>
+</servlet-mapping>
