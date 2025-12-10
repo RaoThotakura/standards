@@ -6,6 +6,7 @@ This is a case study of migrating a pharmaceutical life sciences based applicati
 
 
 Technologies and configuration
+
 jakarta commons-lang 2.5
 
 jakarta commons-beanutils 1.8.0
