@@ -32,8 +32,7 @@ Classpath
 
 ~/bin/apache-tomcat-8.0.35/apache-tomcat-8.0.35/lib/commons-beanutils-1.8.0.jar;
 
-setenv.sh
-set "JRE_HOME=~/bin/jre-8u91-windows-x64/jre1.8.0_91"
-set "CATALINA_HOME=~/bin/apache-tomcat-8.0.35"
-exit /b 0
+JRE_HOME=~/bin/jre-8u91-windows-x64/jre1.8.0_91
+CATALINA_HOME=~/bin/apache-tomcat-8.0.35
+
 
