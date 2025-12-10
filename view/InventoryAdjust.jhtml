@@ -1,0 +1,41 @@
+<IMPORTBEAN BEAN="/properties/InventoryAdjustHandler">
+<IMPORTBEAN BEAN="/atg/dynamo/droplet/ForEach">
+<HTML>
+    <HEAD>
+        <TITLE>Using Join of Two tables</TITLE>
+    </HEAD>
+    <BODY BGCOLOR="#FFFFFF">
+        <H1>Using Join of two tables</H1>
+        <setvalue bean="/properties/InventoryAdjustHandler.Query">
+        <table border=1 align=center>
+            <tr>
+                <th> Job id</th>
+                <th>Product id</th>
+                <th>State</th>
+                <th>Location</th>
+                <th>Weight</th>
+                <th>Brand Id</th>
+                <th>Roll Size</th>
+                <th>Color Id</th>
+                <th>Location Id</th>
+            </tr>
+
+            <droplet bean="ForEach">
+                <param name="array" value="bean: /properties/ InventoryAdjustHandler.inventory">
+                <oparam name="output">
+                    <tr>
+                        <td><valueof param="element.jobId"></valueof></td>
+                        <td><valueof param="element.prodId"></valueof></td>
+                        <td><valueof param="element.state"></valueof></td>
+                        <td><valueof param="element.location"></valueof></td>
+                        <td><valueof param="element.weight"></valueof></td>
+                        <td><valueof param="element.brandId"></valueof></td>
+                        <d><valueof param="element.rollSize"></valueof></td>
+                        <td><valueof param="element.colorId"></valueof></td>
+                        <td><valueof param="element.locationId"></valueof></td>
+                    </tr>
+                </oparam>
+            </droplet>
+        </table>
+    </BODY>
+</HTML>

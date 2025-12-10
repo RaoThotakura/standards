@@ -1,0 +1,56 @@
+relationalview InventoryAdjustRview {
+    rowmap =  {
+        table p2p_inv = P2P_INVENTORY;
+        table p2p_loc = P2P_LOCATION;
+        table s_prod_cat = SPRODUCT_CATALOG;
+        table p2p_ordr = P2P_ORDER;
+        table p2p_core_typ = P2P_CORE_TYPE;
+        table p2p_notched = P2P_NOTCHED;
+        table p2p_job = P2P_JOB;
+        table p2p_inv_tran = P2P_INVENTORY_TRANSACTION;
+
+        join p2p_ordr.CORE_ID = p2p_core_typ.ID;
+        join p2p_ordr.NOTCHED_ID = p2p_notched.ID;
+        join p2p_job.ID = p2p_inv_tran.JOB_ID;
+        join p2p_inv_tran.LOCATION_ID = p2p_loc.ID;
+
+        class InventoryAdjust {
+            id = INTEGER p2p_job.ID;
+            prodId = INTEGER p2p_inv.PRODUCT_ID;
+            category = VARCHAR s_prod_cat.CATEGORY;
+            mill = VARCHAR s_prod_cat.MILL_NAME;
+            prodBrand = VARCHAR s_prod_cat.PRODUCT_BRAND;
+            finish = VARCHAR s_prod_cat.FINISH;
+            color = VARCHAR s_prod_cat.COLOR:
+            basisWeight = VARCHAR s_prod_cat.BASIS_WEIGHT;
+            basisSize = VARCHAR s_prod_cat.BASIS_SIZE;
+
+            rollSize = INTEGER p2p_ordr.ROLL_SIZE;
+            diameter = INTEGER p2p_ordr.DIAMETER;
+            coreSize = VARCHAR p2p_ordr.CORE_SIZE;
+            coreTyp = VARCHAR p2p_core_typ.DESCRIPTION;
+            notched = VARCHAR p2p_notched.DESCRIPTION;
+            recycled = VARCHAR p2p_ordr.RECYCLED_YN;
+            qoh = INTEGER p2p_inv.WEIGHT;
+            location = VARCHAR p2p_loc.CITY;
+            jobTitle = VARCHAR p2p_job.JOB_TITLE;
+            internalId = VARCHAR p20_ job.INTERNAL_ID:
+            endUse = VARCHAR p2p_job.END_USE;
+            allocated = INTEGER p2p_job.ALLOCATED;
+            unallocated = INTEGER p2p_job.UNALLOCATED;
+            rollNumber = VARCHAR p2P_job.ROLL_NUMBER;
+            sku = VARCHAR p2p_job.SKU;
+            car_no = VARCHAR p2p_job.VEHICLE_NUMBER;
+            manifest_no = VARCHAR p2p_job.MANIFEST_NUMBER;
+            recv_date = DATE p2p_job.RECEIVED_DATE;
+            price = INTEGER p2p_job.PRICE;
+        }
+    }
+
+    subview byld (int requestedId) {
+        where = ":this.id = :requestedId";
+    }
+    subview byld (int jobId, int prodId) {
+        where = ":this.id = :jobId AND :this.prodId = :prodId";
+    }
+}
