@@ -1,0 +1,57 @@
+<section id="miniPage">
+    <div class="modal-header">
+        <h1 class="modal-title">{{ctrl.vm.heading}}</hl>
+    </div>
+    <div class="container-fluid">
+        <h2>Description</h2>
+        <p> This task adds a client to the client table in CheckPoint. It needs the following inputs: 'client_name:address:email:website:phone:fax' in ARGS field. Only client name is required. The others are optional. </p>
+        <br>
+        <table class="table">
+            <tr>
+                <th> Variable</th> 
+                <th> Description</th>
+            </tr>
+            <tr class="even">
+                <td>client_name</td>
+                <td>Client name</td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td>Client address</td>
+            </tr>
+            <tr class="even">
+                <td >email</td>
+                <td>Client email address</td>
+            </tr>
+            <tr>
+                <td>website</td>
+                <td>Client website</td>
+            </tr>
+            <tr class="even">
+                <td>phone</td>
+                <td> Client phone number</td>
+            </tr>
+            <tr>
+                <td> fax</td>
+                <td>Client fax number</td>
+            </tr>
+        </table>
+        <h2>Examples</h2>
+        <table class="table">
+            <tr>
+                <th> Input</th>
+                <th> Description</th>
+            </tr>
+            <tr class="even">
+                <td> Client A</td>
+                <td> Creates a record in client table for 'Client A'</td>
+            </tr>
+            <tr>
+                <td>ORS:/ors.com</td>
+                <td>Create a record for ORS and add website info</td>
+            </tr>
+        </table>
+        <h2>SQL Codes</h2>
+        <p>N/A<p>
+    </div>
+</section>

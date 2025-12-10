@@ -1,0 +1,66 @@
+
+<section id="miniPage">
+    <div class="modal-header">
+        <h3 class="modal-title"> {{ ctrl.vm.heading }}</h3>
+    </div>
+    <div class="modal-body" ng-repeat="log in ctrl.vm.params">
+        <div><span> {{log.parameter}}</span></div>
+        <div><span> {{log.loglevel}}</span></div>
+        <div>
+            <span>{{log.msglevel}}</span>
+            <span>{{log.gid}}</span>
+        </div>
+        <div ng-if="log.fileText">
+            <div class="alert alert-success" role="alert">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <span>{{log.fileText}}</span>
+            </div>
+        </div>
+        <div ng-if="log.logText">
+            <div class="alert alert-success" role="alert">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                <span> {{log.logText}}</span>
+            </div>
+        </div>
+        <div ng-if="log.info1">
+            <span>{{log.info1}}</span>
+        </div>
+        <div ng-if="log.info2">
+            <span>{{log.info2}}</span>
+        </div>
+        <div ng-if="log.info3">
+            <span>{{log.info3}}</span>
+        </div>
+        <div ng-if="log.info4">
+            <span>{{log.info4}}</span>
+        </div>
+        <div ng-if="log.info5">
+            <span>{{log.info5}}</span>
+        </div>
+        <div ng-if="log.info6">
+            <span>{{log.info6}}</span>
+        </div>
+        <div ng-if="log.info7">
+            <span> {{log.info7}}</span>
+        </div>
+        <div ng-if="log.info8">
+            <span> {{log.info8}}<span>
+        </div>
+        <div ng-if="log.info9">
+            <span>{{log.info9}}</span>
+        </div>
+        <div ng-if="log.info10">
+            <span>{{log.info10}}</span>
+        </div> 
+        <div><span>{{log.jobid}}</span></div>
+        <div><span> {{log.jobargs}}</span></div>
+        <div><span> {{log.appuser}}</span></div>
+        <div><span> {{log.outnum}}</span></div>
+        <div><span> {{log.outmsg}}</span></div>
+        <div><span> {{log.success}}</span></div>
+    </div>
+    <div class="modal-footer">
+        <div class="footer">
+        </div>
+    </div>
+</section>

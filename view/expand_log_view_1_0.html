@@ -1,0 +1,21 @@
+<section ng-if="ctrl.vm.expanded">
+    <div class="container-fluid table-responsive">
+        <ul>
+            <div ng-repeat = "log in ctrl.vm. logs">
+                <li ng-if="log.logType === 'html'">
+                    <a ui-sref="showlog_1_0({logText: log.logText;})" 
+                        href target="_self" title={{log.logTitle}}>
+                        {{log.logText}}
+                    </a>
+                </li>
+                <li ng-if="log.logType === 'sql'">
+                    <a ui-sref="showlogSql_1_0({logText: log.logText})"
+                      href target="_self" title={{log.logTitle}}>
+                      {{log.logText}}
+                    </a>
+                </li>
+            </div>
+        </ul>
+    </div>
+    <div ui-view></div>
+</section>

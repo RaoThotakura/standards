@@ -1,0 +1,46 @@
+span.spacer { padding: 5px; }
+p.actions { display: block; padding: 5px 0 0 0; }
+p.actions a,p.actions span.field { font-size: 20px; font-weight: normal; font-size: 15px; font-family : "Arial"; text-decoration: none;color:#333333;}
+span.client b,span.project b,span.study b,span.list b,span.job{ margin-left: 5px; font-weight: normal; font-size: 15px; font-family : "Arial"; color:#333333; }
+p.actions span.client strong { font-weight: bold; font-size: 15px; font-family: "Arial"; color:#333333; }
+div.content { width : 100%; margin:5px; float: left; text-align:left; } 
+section.leftnav { width: 25%; margin:5px; float: left; text-align:left; }
+section clients { display: block; width : 73%; margin:5px; float: right; } 
+section.projects { width: 45%; margin: 5px; padding: 5px; float: left; }
+section.studies { width: 75%; margin: 5px; padding: 5px; float: left; }
+section lists { width: 300%; margin: 5px; padding: 5px; float: left; }
+section.jobs { width: 300%; margin: 5px; padding: 5px; float: left; } 
+section.stats { width: 300%; margin: 5px; padding: 5px; float: left; clear: left; }
+section jobs p.actions { clear: left; padding: 5px 0 0 0;}
+nav, pagination, carousel, panel-title a, div.heading { cursor: pointer;} 
+/**section.clients p.actions*/ activeclient { clear: left; padding: 5px 0 0 0;} 
+/**section.projects p.actions*/ activeproject { float: left; padding: 5px 0 0 0; }
+h8 strong { color: #8E44AD; font-size: 15px;} 
+h7 strong { color: #B7950B; font-size: 15px; }
+h6 strong { color: #FF5833; font-size: 15px; }
+h5 strong { color: #334FFF; font-size: 15px; } 
+h4 strong { color: #008000; font-size: 15px; } 
+h3 strong { color:#839192; font-size: 16px; } 
+h2 strong { color:#839192; font-size: 15px; } 
+div[role=button] { border: 1px dashed red; display:block; }
+table.status { width: 12%;border-collapse: collapse; }
+table status,table.status tr, table.status td, table.status th { border: 1px solid #844484; white-space: pre-line; font-size: 12px; font-weight: normal; font-family: "Arial"; }
+table.status th { font-weight: bold;text-align: center; }
+a.setup { font-size: 20px; font-weight: bold; width:20px; padding: 5px;display:block;} 
+span.buttonrow.left { float: left; clear: both; display: inline; padding:5px 5px 0 5px; margin: 8px 5px 5px 8px; }
+/*span.buttonrow.left a { color: #008000; font-size: 15px;font-weight: bold; }*/ 
+section.clients a { color: #1C2833; font-size: 17px;} 
+section.projects a { color: #008000; font-size: 17px;} 
+section studies a { color: #334FFF; font-size: 17px;} 
+section lists a { color: #FF5833; font-size: 17px;} 
+section.jobs a { color: #B7950B; font-size:17px;} 
+span.addnew a { font-size: 13px;} 
+section a:hover { color: #334FFF;} 
+section.studies a:hover { color: #FF5833;}
+footer, footer p{ text-align: center; font-weight: normal; font-size: 15px; font-family: "Arial";color:#333333; } 
+section#miniPage { font-size: 12px;}
+modal footer * { font-size: 12px; color:#839192;}
+modal-Ig modal-content specs { overflow-x: scroll; height: 500px; }
+section ul { list-style: none inside; list-style-type:none; padding:0px; padding-left: 10px; }
+section ul li { padding-top: 2px; padding-right: 3px; margin-top:2px; margin-right: 3px; display: inline;border-right: 1px solid #333333;}
+page-header h1 { text-shadow: 2px 5px; text-align: center; }

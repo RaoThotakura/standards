@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html xmlns= "http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+    <head>
+        <title> AutoDCD Portal- Expand Client View</title>
+        <link rel="stylesheet" type="text/css" href="./styles/dfcommon_1_0.css"/>
+        <script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-ui-router.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi21kFfwwEAa8hDDdjZIpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <script src="..(scripts\bootstrap-master\src\bootstraplui-bootstrap-tpls-1.3.3.js" type="text/javascript"></script>
+        <script src=".. Iscripts\bootstrap-master\src\accordion\accordion.js" type="text/javascript"></script>
+        <script src=". scripts\bootstrap-master\src\modal\modal.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var autoDCDApp = angular.module('autoDCDApp',['ui.router', 'ui.bootstrap.accordion', 'ui.bootstrap.modal']);
+        </script>
+        <script src="./scripts/app.1.0.js" type="text/javascript"></script>
+        <script src="./services/LoginService.js" type="text/javascript"></script>
+        <script src="/controller/LoginController.js" type="text/javascript"></script>
+        <script sre="../services/ClientService.1.0.js" type= "text/javascript"></script> 
+        <script sre="..controller/ClientController.1.0.js" type="text/javascript"></script>
+        <script src="../services/ProjectService.1.0.js" type="text/javascript"></script> 
+        <script src="../controller/ProjectController.1.0.js" type="text/javascript"></script>
+        <script src="../controller/ModalInstanceController.js" type="text/javascript"></script>
+        <script src="../services/StudyService.1.O.js" type="text/javascript"></script> 
+        <script src="./controller/StudyController.1.0.js" type="text/javascript"></script>
+        <script src="./services/ListService 1.0.js" type="text/javascript"></script> 
+        <script src="./controller/ListController. 1.0.js" type="text/javascript"></script>
+        <script src="./services/JobService 1.0.js" type="text/javascript"></script>
+        <script src="../controller/JobController 1.0.js" type="text/javascript"></script>
+        <script src="./services/JobStatusService. 1.0.js" type="text/javascript"></script>
+        <script src="./controller/JobStatusController. 1.0.js" type="text/javascript"></script>
+        <script src="/controller/HelpModalController js" type="text/javascript"></script>
+        <script src="…/controller/LogController. 1.0.js" type="text/javascript"></script>
+        <script src="/controller/LogViewController. 1.0.js" type="text/javascript"></script> 
+        <script src="/controller/LogMsg ViewController.1.0.js" type="text/javascript"></script>
+        <script src="./controller/LogMsgSqlViewController.1.0.js" type="text/javascript"></script>
+        <script src="../services/FileUploadModel.js" type="text/javascript"></script> 
+        <script src="../services/FileUploadService.1.0.js" type="text/javascript"></script> 
+        <script sre="../controller/FileUploadController.1.0.js" type="text/javascript"></script>
+        <script src="./controller/ActionModalController.js" type="text/javascript"></script>
+    </head>
+
+    <body ng-app="autoDCDApp">
+        <div class="page-header">
+            <h1>Auto DCD Portal<small> v2.2 (FSD)</small></h1>
+        </div>
+        <div class="content">
+            <div ui-view></div>
+            <section class="leftnav" ng-controller="loginController as ctrl">
+                <header>
+                    <h2><strong> Dashboard</strong></h2>
+                </header>
+                <p class="actions">
+                    <header>
+                    <strong> 1. DB: <span>DIS1 on ORSWB1</span></strong>
+                    </header>
+                    <ul>
+                        <li><a href="http://qweoctdwebl:8088/cgi/map_spec.pl?pid=map&no_dispform=1&sel_snl=dis1&guid=4773:sthotakura:20160512.074544&task=disp_new&new_task=run_login" target="R" title="Login User">Login</a></li>
+                        <li><a href="http://qweoctdwebl:8088/cgi/map_spec.pl?pid=map&no_dispform=1&sel_snl=dis1&guid=4773:sthotakura:20160512.074544&task=disp_new&new_task=run_logout" target="R" title="Logout User"> Logout</a></li>
+                        <li><a href="http://qweoctdwebl:8088/cgi/map_spec.pl?pid=map&no_dispform=1&sel_snl=dis1&guid=4773:sthotakura:20160512.074544&task=disp_new&new_task=run_chgpwd" target="R" title="Change User's PWD"> Change Password</a></li> 
+                        <li><a href="http://qweoctdwebl:8088/cgi/map_spec.pl?pid=map&no_dispform=1&sel_snl=dis1&guid=4773:sthotakura:20160512.074544&task=disp_new&new_task=run_setpwd" target="R" title="Set to Default PWD">Set Password</a></li>
+                    </ul>
+                </p>
+                <p class="actions">
+                    <header>
+                        <strong>2. Client</strong> :
+                    </header> 
+                    <ul>
+                        <li><a href="" ng-click="ctrl.launchjobmodal({filename:'show_all_clients',heading:'List of Clients',listld: listConfig.listID,size'lg'})" target="_self" title="Show all clients">Show All Clients</a></li>
+                        <li><a href="" ng-click="ctrl.launchjobmodal({filename:'add_client', heading: 'Add a client',size:'md'})" target="_self" title="Add a client"> Add Client</a> </li>
+                        <li><a ui-sref="expandclient_1_0" target="_self" title="Expand to display available clients">Expand Client</a></li>
+                    </ul>
+                </p>
+                <form class="form-inline" ng-if="(listConfig.ShowForm && ctrl.vm.client.setup)">
+                    <div class="form-group">
+                        <label for="sel_sn2">Client Id</label>
+                        <input id="sel_sn2" class="form-control" ng-model="ctrl.vm.client.id" size=5/>
+                    </div>
+                    <button type='button' class="btn btn-primary" name='a' ng-click="ctrI.setaclient(set _a_client)">Set</button>
+                </form>
+                <p class="actions" ng-if="(clientConfig.SetDef || listConfig.SetDef || ctrl.vm.client.id)">
+                    <span class="client">
+                        <strong>
+                            Client: {{clientConfig.ClientID || listConfig.ClientID || ctrl.vm.client.id}}  - 
+                                    {{clientConfig.ClientName || listConfig. ClientName || ctrl.vm.client.value}}
+                        </strong>
+                    </span>
+                </p>
+                <p class="actions">
+                    <header>
+                    <strong>3. Project:</strong>
+                    </header>
+                    <span ng-if="(listConfig.ShowForm)">
+                        <ul>
+                            <li>Show Projects</li>
+                        </ul>
+                    </span>
+                    <span ng-if="(listConfig.SetDef)">
+                        <ul>
+                        <li>
+                            <a href="" 
+                                ng-click="ctrl.launchactionmodal({ filename: 'show_all_projects',heading:'Show All Projects', clientID: listConfig.ClientID, clientName: listConfig.ClientName,size:'md'})" 
+                                target="_self" 
+                                title="Show all Projects for client {{listConfig.ClientID}} - {{listConfig.ClientName}} |">Show All Projects</a>
+                        </li> 
+                        <li>
+                            <a href="" 
+                                ng-click="ctrl.launchactionmodal({filename: 'add_project,heading:'Add a project', clientID: listConfig.ClientID,clientName:listConfig.ClientName,size:'md'})" 
+                                target="_self" 
+                                title="Add a project for client {{listConfig.clientID}} - {{listConfig.clientName}}" ng-if="(listConfig.SetDef)">Add Project</a>
+                        </li>
+                        </ul>
+                    </span>
+                </p>
+
+                <form class="form-inline" ng-if="(listConfig.ShowForm && ctrl.vm.project.setup)">
+                    <div class="form-group">
+                        <label for="sel_sn2"> Project Id: </label> 
+                        <input id="sel_sn2" class="form-control" ng-model="ctrl.vm.project.id" size=5 />
+                    </div>
+                    <button type="button" class="btn btn-primary" name='a' ng-click="ctrl.setaproject(set_a_project)">Set</button>
+                </form>
+
+                <p class="actions" ng-if="(projectConfig.SetDef || listConfig.SetDef || ctrl.vm.project.id)">
+                    <span class="client">
+                        <strong> 
+                            Project : {{projectConfig.projectID || listConfig.projectID || ctrl.vm.project.id}} - 
+                            {{projectConfig.projectName || listConfig.projectName || ctrl.vm.project.value}}
+                        </strong>
+                    </span>
+                </p>
+                <p class="actions">
+                    <header>
+                        <strong>4. Study: </strong>
+                    </header>
+                    <span ng-if="(listConfig.ShowForm)">
+                        <ul>
+                            <li>Show Studies</li>
+                        </ul>
+                    </span>
+                    <span ng-if="(listConfig.SetDef)">
+                        <ul>
+                            <li>
+                                <a  href="" 
+                                    ng-click="ctrl.launchjobmodal({filename: 'show_studies_for_a_project',heading:'847 - AutoDCD Dev Studies', listld: listConfig.listID, size:'lg'})" 
+                                    target="_self"
+                                    title="show studies from project 847">Show Studies</a>
+                            </li>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchactionmodal{filename: 'add_study',heading:'Add a Study',projectID:listConfig.projectID,projectName:listConfig.projectName,size:'md'})" 
+                                    target="_self" 
+                                    title="Add study to project {{listConfig.projectID}} - {{listConfig.projectName}}">Add Study</a>
+                            </li>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchactionmodal({ filename: 'add_dblink',heading: 'Add a DBLink',studyID:listConfig.studyID,studyName: listConfig.studyName,size:'md'})" 
+                                    target="_self" 
+                                    title="Add a DBLink to study {{listConfig.studyID;} - {{listConfig.studyName}}">Add DBLink</a>
+                            </li>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchactionmodal(filename: 'run_cptable,heading: 'RunCPTable',studyID:listConfig.studyID,studyName:listConfig.studyName,size:'md'})" 
+                                    target="_self" 
+                                    title="Run CPTable for study {{listConfig.studyID}} - {{listConfig.studyName}}">Run CPTable</a>
+                            </li>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchactionmodal {filename: 'run_droptable',heading: 'Drop Tables',studyID:listConfig.studyID,studyName:listConfig.studyName,size:'md'})" 
+                                    target="_self" 
+                                    title="Drop Tables for study {{listConfig.studyID}} - {{ listConfig.studyName }}">Drop Tables</a>
+                            </li>
+                            <li>
+                                <a  href="" 
+                                    ng-click="ctrl.launchactionmodal({filename: 'run_renametable',heading: 'Rename Table',studyID:listConfig.studyID,studyName:listConfig.studyName,size:'md'})" 
+                                    target="_self"
+                                    title="Rename Tables for study { {listConfig.studyID}} - { {listConfig.studyName} }">Rename Tables</a>
+                            </li>
+                        </ul>
+                    </span>
+                </p>
+                <form class="form-inline" ng-if="(listConfig.ShowForm && ctrl.vm.study.setup)">
+                    <div class="form-group">
+                        <label for="sel_sn2"> Study Id: </label>
+                        <input id="sel_sn2" class="form-control" ng-model="ctrl.vm.study.id" size=5 />
+                        <button type="button' class="btn btn-primary" name='a' ng-click="ctrl.setastudy('set_a_study')">Set </button>
+                    </div>
+                </form>
+                <p class="actions" ng-if="(study Config.SetDef || listConfig.SetDef || ctrl.vm.study.id)">
+                    <span class="client">
+                        <strong>
+                                Study : {{studyConfig.studyID || listConfig. studyID || ctrl.vm.study.id}} - 
+                                        {{studyConfig.studyName || listConfig.studyName || ctrl.vm.study.value}} 
+                        </strong>
+                    </span>
+                </p>
+                <p class="actions">
+                    <header>
+                        <strong> 5. Load:</strong> 
+                    </header>
+                    <span ng-if="(listConfig.ShowForm)">
+                        <ul>
+                            <li>Show</li>
+                        </ul>
+                    </span>
+                    <span ng-if="(listConfig.SetDef)">
+                        <ul>
+                            <li>
+                                <a href=""
+                                    ng-click="ctrl.launchfilemodal( (filename: 'upload_file',heading: 'Upload a DCS file', listld: listConfig. listID,size:'md'))" 
+                                    target=" self" 
+                                    title="upload specs file">Upload File</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    ng-click="ctrl.launchjobmodal({filename: 'load_specs',heading: 'Load a DCS file (Run LDSPECS)', listld: listConfig. listID,size:'md'})" 
+                                    target="_self" 
+                                    title="Load a DCS file (or LDSPECS)"> Load Spec</a>
+                            </li>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchjobmodal({filename: 'loadviews',heading:'Load Views (Run LDVIEWS)',listld: listConfig.listID,size:'md'})"
+                                    target="_self" 
+                                    title="load view codes from XLS (or LDVIEWS)"> Load View</a>
+                            </li>        
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchjobmodal({filename: 'crtviews',heading: 'Create Views (Run CRTVIEWS)',listld: listConfig.listID,size:'md'})"
+                                    target="_self"
+                                    title="Create Views (or CRTVIEWS)"> Create View</a>
+                            </li>
+                        </ul>
+                    </span>
+                    <span ng-if="(listConfig.SetDef)">
+                        Show : 
+                        <ul>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchjobmodal({ filename: 'mapping_spec_list',heading: 'List of Mapping Specification', listld: listConfig listID,size:'lg'})" 
+                                    target="_self" 
+                                    title="show specs for all domains">Show Specs</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    ng-click="ctrl.launchjobmodal( {filename: 'select_specs' heading:'Select Specs',listld: listConfig.listID,size:lg'})" 
+                                    target="_self" title="select specs">Select Specs</a>
+                            </li>
+                            <li>
+                            <a href="" 
+                                    ng-click="ctrl.launchjobmodal({filename: 'select_codes',heading:'Select View Codes',listld: listConfig.listID,size:lg'})" 
+                                    target="_self" 
+                                    title="show specs for all domains">Select Views</a>
+                            </li>
+                            <li>
+                                <a href 
+                                    ui-sref="displogview_1_0" 
+                                    target="_self" 
+                                    title="Display Log Files"> Display Log Files</a>
+                            </li>
+                        </ul>
+                    </span>
+                </p>
+                <p class="actions">
+                    <header>
+                        <strong> 6. Job:</strong>
+                    </header>
+                    <span ng-if="(listConfig.ShowForm)">
+                        <ul>
+                            <li>Add</li>
+                            <li>Run</li>
+                            <li><a href ui-sref="displogview_1_0" target="_self" title="Display Log Files"> Display Log Files</a></li>
+                        </ul>
+                    </span>
+                    <span ng-if="(listConfig.SetDef)">
+                        <ul>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctri.launchjobmodal (filename: 'add_job',heading:'Add a Job', listld: listConfig.listID,size:'md'))" 
+                                    target="_self"
+                                    title="Add a Job">Add a Job</a>
+                            </li>
+                            <li>
+                                <a href=""
+                                    ng-click="ctrl.launchjobmodal({filename: 'run_job',heading:'Run a Job',listld: listConfig.listID,size:'md'))" 
+                                    target="_self"
+                                    title="Run a Job"> Run a Job</a>
+                            </li>
+                            <li>
+                                <a href="" 
+                                    ng-click="ctrl.launchjobmodal( (filename: 'display_jobs',heading:'List of Jobs',listld: listConfig.listID,size:Ig'])" 
+                                    target="_self"
+                                    title="Display Jobs">Display Jobs</a>
+                            </li>
+                            <li>
+                                <a href ui-sref="displogview _1_0" target="_self' title="Display Log Files">Display Log Files</a>
+                            </li>
+                        </ul>
+                    </span>
+                </p>
+                <p class="actions">
+                    <header>
+                        <strong>7. Help</strong> :
+                    </header> 
+                    <ul>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({filename:add_client',heading:'Add a Client',size:'md'})" 
+                                target="_self" 
+                                title="Display Help on adding a client"> Adding a Client</a>
+                        </li>
+                        <li>
+                            <a href="" 
+                                ng-click="ctrl.launchhelpmodal({ filename:'add_project', heading: 'Add a Project',size:'md'})" 
+                                target="_self" 
+                                title="Display Help on adding a project"> Adding a Project</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal( {filename:'add_study', heading:'Add a Study',size:'md'})" 
+                                target="_self" 
+                                title="Display Help on adding a study"> Adding a Study</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({filename:'add_dblink',heading:'Add a DB Link',size:'md'})" 
+                                target="_self"
+                                title="Display Help on adding a DBLink"> Adding a DBLink</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({filename:'add_job', heading: 'Add a Job',size:'md'})" 
+                                target="_self" 
+                                title="Help on Add a Job"> Adding a Job</a>
+                        </li>
+                        <li>
+                            <a href="" 
+                                ng-click="ctrl.launchhelpmodal({filename:'run_cptable',heading:'Schedule a CPTABLE Job',size:'md'})" 
+                                target="_self" 
+                                title="Display Help on run CPTable">Copying tables between schemas</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({filename:'run_droptable', heading: 'Drop Table From a Staging Schema',size:'md'})" 
+                                target="_ self" title="Display Help on run drop table"> Dropping tables </a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({filename:'run_renametable',heading: 'Run Renaming Tables',size:'md'})" 
+                                target="_self" 
+                                title="Display Help on run rename table"> Renaming tables in a schema</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({filename:'add_loadSAS_job', heading:'Add a LOADSAS Job',size:'md'})" 
+                                target="_ self" 
+                                title="Display Help on loading a SAS Job">Loading a SAS Job</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({ filename:'load_specs',heading: 'Load Specs Into SP_SPECS',size:md'})" 
+                                target="_ self" 
+                                title="Run Load specs from XLS file"> Loading specs from XLS</a> 
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({ filename:'add_job',heading:'Add a Job',size:'md'})" 
+                                target="_self" 
+                                title="Run Load View Help"> Loading view codes from XLS</a>
+                        </li>
+                        <li>
+                            <a href=''
+                                ng-click="ctrl.launchhelpmodal({filename:'run_create_views' heading:'Run Create View',size:md'})" 
+                                target="_self" 
+                                title="Run Create View Help"> Creating a View</a>
+                        </li>
+                        <li>
+                            <a href=""
+                                ng-click="ctrl.launchhelpmodal({filename:'run_genSDTM job',heading: 'Run GenSDTM Job',size:'md'})" 
+                                target="_self' title="Help on Run_aJob"> Running GenSDTM Job</a>
+                        </li>
+                    </ul>
+                </p>
+            </section>
+        </div>
+        <div class="footer">
+            <p>&c; Copyright 2016 <strong>505 House Ventures</strong></p> 
+            <p>505 Kennett Pike</p> <p>Chadds Ford, PA 19317</р>
+        </div>
+    </body>
+</html>

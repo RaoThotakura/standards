@@ -1,0 +1,39 @@
+<section class="lists" ng-if="ctrl.vm.expanded">
+    <header>
+        <h6>
+            <strong>Lists Lists for Study: {{ctrl.vm.study.id}} - {{ctrl.vm.study.value} }</strong>
+        </h6>
+    </header>
+    <span class="addnew">
+        <a  href="http://qweoctdwebl:8088/cgi/map_spec.pl?pid=map&sel_sn1=dis1&guid=4773:sthotakura:20160512.074544&task=disp_new&new_task=add_project&cln_id=609" 
+            target="R" 
+            title="add list">Add List</a>
+    </span>
+    <div    ng-repeat = "list in ctrl.vm.lists" 
+            ng-if="list.clientid === ctrl.vm.client.id && list.prj_id === ctrl.vm.project.id && list.stdy_id === ctrl.vm.study.id">
+        <p class="actions activeproject">
+            <a href="" 
+                ng-click="ctrl.setuplist({ClientID: ctrl.vm.client.id, ClientName: ctrl.vm.client.value, projectID: ctrl.vm.project.id, projectName:ctrl.vm.project.value, studyID:ctrl.vm.study.id, studyName:ctrl.vm.study.value, listID:list.listid, SetDef: true,ShowForm: false})"
+                target="_self"
+                title="Set">
+                <span class="glyphicon glyphicon-flag"></span>
+            </a>
+            <span class="spacer"></span>
+            <a ui-sref="addjob_1_0({clientID: ctrl.vm.client.id,clientName: ctrl.vm.client.value, projectID:ctrl.vm.project.id,projectName: ctrl.vm.project.value,studyID:ctrl.vm.study.id,studyName:ctrl.vm.study.value,listID:list.listid})"
+                target="_self" 
+                title="Add job to list {{list.listid}}">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+            <span class="spacer"></span>
+            <a ui-sref="expandjob_1_0({clientID: ctrl.vm.client.id, clientName: ctrl.vm.client.value, projectID:ctrl.vm.project.id, projectName: ctrl.vm.project.value,studyID:ctrl.vm.study.id,studyName:ctrl.vm.study.value,listID:list.listid})"
+                target="_self"
+                title="expand to job"> 
+                <span class="glyphicon glyphicon-expand"></span>
+            </a>
+            <span class="list">
+                <b> {{ list.listid }} - {{ list.listname }} </b>
+            </span>
+        </p>
+    </div>
+    <div ui-view></div>
+</section>

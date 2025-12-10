@@ -1,0 +1,20 @@
+<section class="col-sm-8 pull-right" ng-if="ctrl.vm.expanded">
+    <header>
+        <h3><strong> Display job logs for job:</strong></h3>
+    </header>
+    <uib-accordion close-others="true">
+        <div class="container-fluid">
+            <ul>
+                <li ng-repeat = "log in ctrl.vm.logs">
+                    <uib-accordion-group>
+                        <uib-accordion-heading>
+                            <p class="actions">
+                            {{log.jobld}} - <a ui-sref="expandlog_1_0({JobID: log.jobld, JobName: log.logText })" href target="_self" title= ({log.logTitle)}>{{log.logText}}</a>
+                            </p>
+                        </uib-accordion-heading>
+                    </uib-accordion-group>
+                </li>
+            </ul>
+        </div>
+    </uib-accordion>
+</section>

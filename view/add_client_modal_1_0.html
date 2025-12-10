@@ -1,0 +1,32 @@
+<section id="miniPage">
+    <div class="modal-header">
+        <h3 class="modal-title"> ({ctrl.vm.heading}) </h3>
+    </div>  
+    <form method="POST" action="http://qweoctdwebl:8088/cgi/map_spec.pl?" enctype="application/x-www-form-urlencoded" name="oraForm" target="R">
+        <input type="hidden" name="pid" value="map" /> 
+        <input type="hidden" name="sel_snl" value="dis!" /> 
+        <input type="hidden" name="task" value="add client" /> 
+        <input type="hidden" name="no_dispform" value="|">
+        <input type="hidden" name="guid" value="4899:sthotakura:20160627.114448"/>
+        <div class="container-fluid">
+            <div class= "form-group">
+                <label for="cln_name">Client Name</label>
+                <input name="cIn_name" value=""/>
+                <input type="hidden" name="cln_address" value=''/> 
+                <input type="hidden" name="cln_email" value=''/>
+                <input type="hidden" name="cln_web" value=''/>
+                <div class="container-fluid">
+                    <div class="btn-group" role="group" aria-label="action buttons">
+                        <button type='button' class="btn btn-primary" ng-click="ctrl.runajob({task: 'add _client' heading:'Add a Client log'))" name='add_client'> Go </button>
+                        <button type='reset' class="btn btn-default" name="reset">Reset</button>
+                        <button type='button' class="btn bin-default" name="a">Help</button>
+                    </div>
+                    * indicates required fields
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <div class="footer"></div>
+    </div>
+</section>

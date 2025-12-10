@@ -1,0 +1,43 @@
+<section class="clients" ng-if="ctrl.vm.expanded">
+<header>
+<h3><strong> Clients for user :s.s.thotakura</strong></h3> 
+    <span class="addnew">
+        <a href="http://qweoctdwebl:8088/cgi/map_spec.pl?pid=map&sel_snl=dis1&guid=4773:sthotakura:20160512.074544&task=disp_new&new_task=add_client&_id=" 
+            target="R" 
+            title="Add client">Add client</a>
+    </span>
+    <uib-accordion close-others="true">
+        <div ng-repeat ="client in ctrl.vm.clients">
+            <span class="buttonrow left">
+                <a  href="" 
+                    ng-click="ctrl.setupclient({ ClientID: client.clientid, ClientName: client.clientname, SetDef: true })" 
+                    target=" _self" 
+                    title="Set {{client.clientid}} - {{client.clientname}} as default client">
+                        <span class="glyphicon glyphicon-flag"></span>
+                </a>
+            </span>
+            <span class="buttonrow right">
+                <uib-accordion-group>
+                    <uib-accordion-heading>
+                        <p class="actions">
+                            <a  ui-sref="addproject_1_0({ClientID: client.clientid, ClientName: client.clientname })" 
+                                target="_self" 
+                                title="Add project to client {{client.clientid}} - {{client.clientname}]">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                            </a>
+                            <span class="spacer"></span>
+                                <a ui-sref="expandproject_1_0({ClientID: client.clientid, ClientName: client.clientname })" 
+                                    target="_self" 
+                                    title="expand to project">
+                                        <span class="glyphicon glyphicon-expand"></span>
+                                </a>
+                            <span class="client">
+                                <b>{{client.clientid}} - {{client.clientname}}</b>
+                            </span> 
+                        </p> 
+                    </uib-accordion-heading>
+                </uib-accordion-group>
+            </span>
+        </div>
+    </uib-accordion>
+</section>

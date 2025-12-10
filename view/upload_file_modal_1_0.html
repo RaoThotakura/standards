@@ -1,0 +1,35 @@
+<section id="miniPage">
+<div class="modal-header">
+    <h3 class="modal-title"> {{ctrl.vm.heading}}</h3>
+</div>
+<form   method="POST" 
+        enctype="multipart/form-data" 
+        name="dataSpecFileForm" 
+        ng-submit="ctrl.upload File({task:'load_a_spec',heading: 'Load a DCS file log'})">
+        <div class="container-fluid">
+            <div class="form-group">
+                <label for="list_id">List ID</label>
+                <input id="list_id" ng-model="ctrl.vm.params" readonly/>
+            </div>
+            <div class="form-group">
+                <label for="file_id">File Name</label>
+                <input type="file" file-model="spec_file_name" accept=".xls"/>
+            </div>
+            <div class="form-group">
+                <label for="file_id"> Desitination Dir Name</label>
+                <input type="text" name="destination" ng-model="destination"/>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="btn-group" role="group" aria-label="action buttons">
+                <button type='submit' class="btn btn-primary" name='upload'>Go</button> 
+                <button type='reset' class="btn btn-default" name='reset'>Reset</button> 
+                <button type='button' class="btn btn-default" name='a'>Help</button>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer">
+        <div class="footer">
+        </div>
+    </div>
+</section>

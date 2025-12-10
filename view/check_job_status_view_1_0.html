@@ -1,0 +1,36 @@
+<section class="stats" ng-if="ctrl.vm.expanded">
+    <header>
+    <h8>
+        <strong> Stat Records for Job : {{ctrl.vm.job.id}} - </strong>
+    </h8>
+    </header>
+    <a href="http://qweoctdwebl:8088/cgi/map_spec.pl?pid=map&no_dispform=1&sel_snl=dis1&sel_sn2=17374&task=sel_stat&gui=4773:sthotakura:20160512.074544">Click</a> to refresh<br>
+    <span>CID, PID, SID, LID for job 17374 are 609,847,1312,1494,17374, TEST32_ SCHEMA, TEST32_SCHEMA</span> 
+    <table class="table table-bordered status table-striped">
+        <tr></tr>
+        <th>STAT_ID</th>
+        <th>JOB_ID</th>
+        <th>NAME</th> 
+        <th>START_TIME</th> 
+        <th>END_TIME</th> 
+        <th>ACTION</th> 
+        <th>STATUS</th> 
+        <th>REMARK</th> 
+        <th>NUM_ROWS</th>
+        <th>OUT_PATH</th> 
+        <th>OUT_MESSAGE</th>
+        <tr ng-repeat="stat in ctrl.vm.stats" nowrap>
+            <td>{{stat.statld}}</td>
+            <td>{{stat.jobld}}</td>
+            <td>{{stat.domain}}</td>
+            <td>{{stat.startTime}} </td>
+            <td>{{stat.endTime}}</td>
+            <td>{{stat.action}}</td>
+            <td>{{stat.status}}</td>
+            <td>{{stat.remark}}</td>
+            <td>{{stat.numRows}}</td>
+            <td>{{stat.outPath}}</td>
+            <td>{{stat.outMessage}}</td>
+        </tr>
+    </table>
+</section>

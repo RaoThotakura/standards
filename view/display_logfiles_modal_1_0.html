@@ -1,0 +1,15 @@
+<section id="miniPage">
+    <div class="modal-header">
+        <h3 class="modal-title"> {{ctrl.vm.pageHeading}}</h3>
+    </div>
+    <div class="container-fluid table-responsive">
+        <ul>
+            <li ng-repeat = "log in ctrl.vm.logs">
+                {{log.jobld}} - <a ui-sref="expandlogO" href target=" self"  title={{log.logTitle}}>{{log.logText}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <div class="footer"> </div>
+    </div>
+</section>
