@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<xsd:schema targetNamespace="laramie.ftgrp.com/framework/subject" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:sub="laramie.ftgrp.comk/framework/subject">
+    <xsd:element name="Subject" type="sub:SubjectType"/>
+    <xsd:complexType name="SubjectType">
+        <xsd:sequence>
+            <xsd:element name="Identities" type="sub:IdentitiesType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="IdentitiesType">
+        <xsd:sequence maxOccurs="4">
+            <xsd:element name="Identity" type="sub:IdentityType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="IdentityType">
+        <xsd:simpleContent>
+            <xsd:extension base="sub:IdentitySimpleType">
+                <xsd:attribute name="type" type="sub:TypeEnumerationType"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="IdentitySimpleType">
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="TypeEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="USER_ID"/>
+            <xsd:enumeration value="ORG_ID"/> 
+            <xsd:enumeration value="ROLE_ID"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

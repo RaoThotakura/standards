@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="laramie.ftgrp.com/framework/sessionroot" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:po="laramie.ftgrp.com/framework/sessionroot">
+    <xsd:element name="SessionTree" type="po:SessionTreeType"/>
+    <xsd:complexType name="SessionTreeType">
+        <xsd:sequence>
+            <xsd:element name="Version" type="po:VersionSimpleType"/>
+            <xsd:element name="ServiceCount" type="po:ServiceCountSimpleType"/>
+            <xsd:element name="Service" type="po:ServiceComplexType" maxOccurs="5"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="VersionSimpleType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="ServiceCountSimpleType">
+        <xsd:restriction base="xsd:integer"/>
+    </xsd:simpleType>
+    <xsd:complexType name="ServiceComplexType">
+        <xsd:sequence>
+            <xsd:element name="Name" type="po:NameEnumerationType"/>
+            <xsd:element name="Login" type="po:LoginComplexType"/>
+            <xsd:element name="Services" type="po:ServicesComplexType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ServicesComplexType">
+        <xsd:sequence>
+            <xsd:element name="Service" type="po:SubServiceComplexType" maxOccurs="5"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SubServiceComplexType">
+        <xsd:sequence>
+            <xsd:element name="Name" type="po:NameEnumerationType"/>
+            <xsd:element name="Login" type="po:LoginComplexType"/>
+            <xsd:element name="Services" type="po:SubSubServicesComplexType" minOccurs="0">
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="SubSubServicesComplexType"/>
+    <xsd:simpleType name="NameEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PORTAL"/>
+            <xsd:enumeration value="WEBFRIS"/>
+            <xsd:enumeration value="GROWTH-YIELD"/>
+            <xsd:enumeration value="FIELD-WORKER"/>
+            <xsd:enumeration value="LARAMIE/webFRIS MODELLING SERVER"/>
+            <xsd:enumeration value="QUERY/REPORT SERVER"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="LoginComplexType">
+        <xsd:sequence>
+            <xsd:element name="Subject" type="po:SubjectType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Authentication" type="po:AuthenticationComplexType" minOccurs="0" maxOccurs="unbounded"/>
+            <xsd:element name="Session" type="po:SessionComplexType" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+        <xsd:attribute name="required" type="xsd:boolean" use="required"/>
+        <xsd:attribute name="provider" type="po:ProviderEnumerationType" use="required"/>
+    </xsd:complexType>
+    <xsd:simpleType name="ProviderEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NATIVE:LDAP" / >
+            <xsd:enumeration value="REFERENCE:PORTAL"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="SubjectType">
+        <xsd:sequence>
+            <xsd:element name="Identities" type="po:Identitiestype"/>
+        </xsd:sequence>
+        <xsd:attribute name="type" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:complexType name="IdentitiesType">
+        <xsd:sequence maxOccurs="4">
+            <xsd:element name="Identity" type="po:IdentityType"/>
+        </xsd:sequence>
+        <xsd:attribute name="type" type="xsd: string"/>
+    </xsd:complexType>
+    <xsd:complexType name="IdentityType">
+        <xsd:simpleContent>
+            <xsd:extension base="po:IdentitySimpleType">
+                <xsd:attribute name="type" type="po:TypeEnumerationType"/>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:simpleType name="IdentitySimpleType">
+        <xsd:restriction base="xsd: string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="TypeEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="USER_ID"/>
+            <xsd:enumeration value="ORG_ID"/>
+            <xsd:enumeration value="ROLE_ID"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:complexType name="AuthenticationComplexType">
+        <xsd:sequence>
+            <xsd:element name="Issuer" type="po:IssuerSimpleType"/>
+            <xsd:element name="Method" type="po:MethodSimpleType"/> 
+            <xsd:element name="Instant" type="po:InstantSimpleType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:SimpleType name="IssuerSimpleType"> 
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="MethodSimpleType"> 
+        <xsd:restriction base="xsd:string"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="InstantSimpleType">
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>
+    <xsd:complexType name="SessionComplexType">
+        <xsd:sequence>
+            <xsd:element name="Created" type="po:CreatedSimpleType"/>
+            <xsd:element name="Accessed" type="po:AccessedSimpleType"/>
+            <xsd:element name="Expires" type="po:ExpiresSimpleType"/>
+            <xsd:element name="KeepAlive" type="po:KeepAliveSimpleType"/>
+            <xsd:element name="State" type="po:StateEnumerationType"/>        
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:string"/>
+    </xsd:complexType>
+    <xsd:simpleType name="CreatedSimpleType">
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="AccessedSimpleType"> 
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>    
+    <xsd:simpleType name="ExpiresSimpleType">
+        <xsd:restriction base="xsd:dateTime"/>
+    </xsd:simpleType>        
+    <xsd:simpleType name="KeepAliveSimpleType">
+        <xsd:restriction base="xsd:boolean"/>
+    </xsd:simpleType>
+    <xsd:simpleType name="StateEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ACTIVE"/>
+            <xsd:enumeration value="INACTIVE"/>
+            <xsd:enumeration value="EXPIRED"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>
+</xsd:schema>        
