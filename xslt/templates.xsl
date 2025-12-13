@@ -25,7 +25,7 @@
         <!-- Field Label in 1st column of a 2 col layout-->
         <td nowrap="nowrap" class="label">
             <xsl:element name="xforms:label">
-                <xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute> 
+                <xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute>
                 <xsl:value-of select="child::forms:label[position()]"/>
                 <xsl:if test="child::forms:alert[position()] = 'required'">
                     <span class="star">*</span>
@@ -38,7 +38,7 @@
                     <xsl:copy-of select="."/>
                 </xsl:for-each>
                 <xsl:for-each select="./*">
-                    <xsl:if test="(name() != 'xforms:label') and (name() != 'xforms:alert*))">
+                    <xsl:if test="(name() != 'xforms:label') and (name() != 'xforms:alert'))">
                         <xsl:copy-of select="."/>
                     </xsl:if>
                 </xsl:for-each>
@@ -48,7 +48,7 @@
         <td nowrap="nowrap" class="label"> <!-- Field Label in 2nd column of a 2 col layout--> 
             <xsl:element name="xforms:label">
                 <xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute>
-                <xsl:value-of select="./xforms:field[SfieldPos 1]/xforms:label"/>
+                <xsl:value-of select="../xforms:field[SfieldPos 1]/xforms:label"/>
                 <xsl:if test="../xforms:field[SfieldPos1]/xforms:alert = 'required'">
                     <span class="star">*</span>
                 </xsl:if>
@@ -78,7 +78,7 @@
     <!-- Local variable for making the tab active/inactive -->
     <xsl:variable name="activeyn">
         <xsl:choose>
-            <xsl:when test="$fieldPos &It;= 1"> 
+            <xsl:when test="$fieldPos &lt;= 1"> 
                 <xsl:value-of select="'active'"/>
                 <!--Logic to determine the first tab field as ACTIVE and return a string based on a field position -->
             </xsl:when>
@@ -90,10 +90,10 @@
 
     <xsl:variable name="normalizedTabname">
         <xsl:choose>
-            <xsl:when test="contains(StabName,'')">
+            <xsl:when test="contains($tabName,'')">
                 <xsl:value-of select="substring-before ($tabName,'')"/>
             </xsl:when>
-            <xsl:when test="not(contains(StabName,''))">
+            <xsl:when test="not(contains($tabName,''))">
                 <xsl:value-of select="$tabName"/>
             </xsl:when>
         </xsl:choose>
@@ -149,7 +149,7 @@
     <xsl:param name="tabName"/>
     <xsl:choose>
         <xsl:when test="contains($tabName,'')">
-            <xsl:value-of select="substring-before(StabName,'')"/>
+            <xsl:value-of select="substring-before($tabName,'')"/>
         </xsl:when>
         <xsl:when test="not(contains($tabName,''))">
             <xsl:value-of select="$tabName"/>
@@ -259,7 +259,7 @@
                         </xsl:call-template>
                     </xsl:variable>
                     <xsl:element name="xforms:case">
-                        <xsl:attribute name="id"><xsl:value-of select="concat(case', SlistHeading)"/></xsl:attribute>
+                        <xsl:attribute name="id"><xsl:value-of select="concat('case', $listHeading)"/></xsl:attribute>
                         <xsl:element name="div">
                             <xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute> <!-- The style attribute belongs to the inner ‹group> tag -->
                             <br/>

@@ -44,7 +44,7 @@
     <xs1:param name="fieldattributeXPath"/>
     <xsl:param name="fieldchildXPath"/>
     <td nowrap="nowrap" class="label">
-        <xsl:element name="xforms: label">
+        <xsl:element name="xforms:label">
             <xsl:attribute name="style">
                 <xsl:value-of select="xforms:label/@style"/>
             </xsl:attribute>
@@ -61,7 +61,7 @@
                 <xsl:copy-of select="."/>
             </xsl:for-each>
             <xsl:for-each select="$fieldchildXPath">
-                <xsl:if test="((name() != 'xforms:label') and (name() != 'xforms :alert'))"> 
+                <xsl:if test="((name() != 'xforms:label') and (name() != 'xforms:alert'))"> 
                     <xsl:copy-of select="."/>
                 </xsl:if>
             </xsl:for-each>
@@ -83,7 +83,7 @@
 
 <xsl:template name="Tabulation">
     <xsl:param name="tabName"/>
-    <xsl:variable name="fieldPos" select="position ()"/>
+    <xsl:variable name="fieldPos" select="position()"/>
     <xsl:variable name="activeyn">
         <xsl:call-template name="ActiveInactive">
             <xsl:with-param name="fieldPos" select="$fieldPos"/>
@@ -94,7 +94,7 @@
             <xsl:with-param name="tabName" select="$tabName"/>
         </xsl:call-template>
     </xsl:variable>
-    <td width="g" background="assets/default/images/tabs/table_tabs.gif"/> 
+    <td width="9" background="assets/default/images/tabs/table_tabs.gif"/> 
     <xsl:call-template name="TabEdgeImage">
         <xsl:with-param name="activeyn" select="$activeyn"/>
         <xsl:with-param name="direction" select="'left'"/>
@@ -207,7 +207,7 @@
         <xsl:attribute name="model"><xsl:value-of select="@model"/></xsl:attribute>
         <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
         <xsl:attribute name="ref"><xsl:value-of select="@ref"/></xs1:attribute>
-        <table cellpadding="1" cellspacing="0" width="99g" align="center" border="0">
+        <table cellpadding="1" cellspacing="0" width="999" align="center" border="0">
         <td bgcolor="#cccc">
             <table border="0" width="100%" cellpadding="1" cellspacing="1">
                 <tr height="22px">
@@ -224,10 +224,9 @@
                                         <xsl:value-of select="$className"/></xsl:attribute>
                                     <xsl:attribute name="value">
                                         <xsl:value-of select="@label"/>
-                                    </xsl: attribute>
+                                    </xsl:attribute>
                                     <xsl:value-of select="@label"/>
                                 </xsl:element>
-
                             </b>
                         </xsl:element>
                     </xsl:for-each>
@@ -263,7 +262,7 @@
         <xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute>
         <xsl:attribute name="class"><xsl:value-of select="'trig'"/></xsl:attribute>
         <xsl:for-each select="@*">
-            <xsl:if test="name ()= 'bind'">
+            <xsl:if test="name()='bind'">
                  <xsl:attribute name="bind"><xsl:value-of select="."/></xsl:attribute>
             </xsl:if>         
         </xsl:for-each>
@@ -300,7 +299,7 @@
                 <xsl:with-param name="tabName" select="$containerName"/>
             </xsl:call-template>
         </xsl:variable>
-        <xsl:attribute name="id"><xs1:value-of select="concat ('case', $caseId) "/></xsl:attribute>
+        <xsl:attribute name="id"><xs1:value-of select="concat ('case', $caseId)"/></xsl:attribute>
         <xsl:choose>
             <xsl:when test="$containerPosition = '1'">
                 <xsl:attribute name="selected"><xsl:value-of select="'true'"/></xsl:attribute>
@@ -325,7 +324,7 @@
                 </xsl:when> 
                 <xsl:when test="$widgetType='list'">
                     <table width="100%" bgcolor="#DCE6CF">
-                        <b><xsl: value-of select="$caseId" /></b>
+                        <b><xsl:value-of select="$caseId" /></b>
                     </table>
                     <br/>
                     <xsl:call-template name="Content">
@@ -362,8 +361,8 @@
     <xsl:for-each select="$containers">
         <xsl:variable name="containerPosition" select="position()"/> 
         <xsl:variable name="containerName" select="@label"/>
-        <xsl:for-each select="child:: *">
-            <xsl:variable name="totalFieldNodes" select="count (xforms: field)"/>
+        <xsl:for-each select="child::*">
+            <xsl:variable name="totalFieldNodes" select="count(xforms:field)"/>
             <xsl:call-template name="SelectAWidget">
                 <xsl:with-param name="noFields" select="$totalFieldNodes"/>
                 <xsl:with-param name="noColumns" select="@columns" /> 

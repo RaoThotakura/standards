@@ -27,7 +27,7 @@
                 <xsl:attribute name="replace"><xsl:value-of select="'all'"/></xsl:attribute>
                 <xsl:attribute name="action"><xsl:value-of select=" 'staticServlet.jsp'"/></xsl:attribute>
                 <xsl:attribute name="method"><xsl:value-of select="'post'"/></xs1:attribute>
-                <xsl:attribute name="id"><xsl:value-of /></xsl:attribute>
+                <xsl:attribute name="id"><xsl:value-of select="'form/@model'"/></xsl:attribute>
                 <xsl:element name="xforms:message">
                     <xsl:attribute name="ev:event"><xsl:value-of select="'xforms-submit-error'"/></xsl:attribute>
                     <xsl:attribute name="level"><xsl:value-of select="'modal'"/></xs1:attribute>
@@ -43,7 +43,7 @@
                 <xsl:attribute name="src"><xsl:value-of select=" 'UseCase.xml'"/></xsl:attribute>
             </xsl:element>
             <xsl:element name="xforms:message">
-                <xsl:attribute name="ev:event"><xsl:value-of select=" 'xforms-link-exception'"/></xsl:attribute>
+                <xsl:attribute name="ev:event"><xsl:value-of select="'xforms-link-exception'"/></xsl:attribute>
                 <xsl:attribute name="level"><xsl:value-of select="'modal'"/></xsl:attribute>
                 <xl:text>There was an exception loading forms. Please contact FIG....</xsl:text>
             </xsl:element>
