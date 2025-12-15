@@ -1,7 +1,9 @@
 # Modernization using Angular framework
 
-Prior to modern javascript frameworks in single page application paradigm, the expectation of how to accomplish a ux design that is near perfect equivalent was FRAMESET/FRAME in a HTML 4 world. Now that there are several frameworks like Angular that mimic this design, it is easier to implement and take the UX to a superior level. 
-This is a case study of migrating a pharmaceutical life sciences based application from legacy Frames into an advanced angular based application. Certain experiences like file upload can be preserved by utilizing latest Java API.
+Prior to modern javascript frameworks in single page application paradigm, the expectation of how to accomplish a ux design that is near perfect equivalent was FRAMESET/FRAME in a HTML 4 world. 
+Now that there are several frameworks like Angular that mimic this design, it is easier to implement and take the UX to a superior level. 
+This is a case study of migrating a pharmaceutical life sciences based application from legacy Frames into an advanced angular based application. 
+Certain experiences like file upload can be preserved by utilizing latest Java API.
 
 
 
