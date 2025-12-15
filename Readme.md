@@ -8,4 +8,4 @@ Online dynamic chart generation using realtime DB data in UI Layer.
 
 Session Metadata Management (XACML Approach).
 
-Note: For more hypothetical navigate to the wiki section of the repository.
+Note: For more hypothetical enlargement, navigate to the wiki section of the repository.
