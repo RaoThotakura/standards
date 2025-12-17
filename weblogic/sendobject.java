@@ -115,7 +115,7 @@ public class sendobject implements TibrvMsgCallback {
         }
         return false;
     }
-    public Object getObject (TibrMsg msg, String fieldName) {
+    public Object getObject (TibrvMsg msg, String fieldName) {
         try {
             Object array = msg.get(fieldName);
             if (array == null) // check if field not found

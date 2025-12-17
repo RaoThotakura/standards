@@ -121,7 +121,7 @@ public class sendobject implements TibrvMsgCallback {
      * This method assumes the object implements Serializable interface.
     */
 
-    public boolean addObject (TibruMsg msg, String fieldName, String object) {
+    public boolean addObject (TibrvMsg msg, String fieldName, String object) {
         try {
             String array = object;
             msg.add(fieldName, array);
@@ -133,7 +133,7 @@ public class sendobject implements TibrvMsgCallback {
     }
 
 
-    public Object getObject (TibrMsg msg, String fieldName) {
+    public Object getObject (TibrvMsg msg, String fieldName) {
         try {
             Object array = msg.get(fieldName);
             if (array == null) // check if field not found
