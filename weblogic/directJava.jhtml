@@ -10,10 +10,10 @@
         </java>
         <java>
             dataAccess da = new dataAccess ("jdbc:atgpool:ConnectionPool", "select id, name, address_2, city, state, country from p2p_location where data = new String[7];id=1");
-            String data [] = new String [7];
+            String data[] = new String [7];
             data = da.getData();
             dataAccess city= new dataAccess ("jdbc:atgpool:ConnectionPool", "select distinct city from p2p_location");
-            String [] cities = new String[city.norows];
+            String[] cities = new String[city.norows];
             cities = city.getCities();
         </java>
         <ul>

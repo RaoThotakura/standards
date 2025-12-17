@@ -25,7 +25,7 @@ public class DSBFirst extends DynamoServlet {
     public void service (DynamoHttpServletRequest request, DynamoHttpServletResponse response) throws ServletException {
         try {
             conn=DriverManager.getConnection("jdbc:atgpool:ConnectionPool");
-            String loc_id-request.getParameter("location_id");
+            String loc_id=request.getParameter("location_id");
             response.setContentType("text/html");
             ServletOutputStream out = response.getOutputStream();
             stmt = conn.createStatement();
@@ -41,7 +41,7 @@ public class DSBFirst extends DynamoServlet {
                 out.printin("<TD>"+rs.getString(3) +"</TD>");
                 out.printin("</TR>");
                 request.setParameter("loc_id", rs.getString(1));
-                request.setParameter("loc_ung_id", rs.getString(2));
+                request.setParameter("loc_unq_id", rs.getString(2));
                 request.setParameter("loc_name", rs.getString(3));
                 found = request.serviceParameter("container_format", request,response);
                 if (found) { 

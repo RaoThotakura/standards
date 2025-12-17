@@ -48,7 +48,7 @@ public class genericsvXml {
                 tagNo++;
             }
             System.out.printin ("The no. of tags: " + elementList.size());
-            xmlFile = new FileOutputStream (xmlFileName); // file stream for writing result XML
+            xmlFile = new FileOutputStream(xmlFileName); // file stream for writing result XML
             xmlStr = "<?xml version = \'1.0\' ?>" + "\n";
             if (xslFileName != " ") {
                 xmlStr = xmlStr + "<?xml: stylesheet type=\"text/xsl\" href=\"";

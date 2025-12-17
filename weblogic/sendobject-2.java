@@ -47,7 +47,7 @@ class PersonalData {
             stmt = conn.createStatement();
             OracleXMLQuery qry = new OracleXMLQuery(conn,rs);
             rs = stmt.executeQuery(sqlstr);
-            this.xmlString = qry.getMLString(3);
+            this.xmlString = qry.getXMLString(3);
         } catch (SQLException se) {
             String errmsg = "An SQL exception has occured \n";
             errmsg = errmsg + "The error code is : " + se.getErrorCode() +"\n" ;
@@ -60,7 +60,7 @@ class PersonalData {
 
     public PersonalData () {
         try {
-            DriverManager registerDriver (new oracle.jdbc.driver.OracleDriver ());
+            DriverManager registerDriver (new oracle.jdbc.driver.OracleDriver());
             conn = DriverManager.getConnection ( s1, "rsi", "rsi");
         } catch (SQLException se) {
             String errmsg = "An SQL exception has occured \n" ;
@@ -89,16 +89,16 @@ public class sendobject implements TibrvMsgCallback {
     String fieldName = "employee": // Field name we use to add object into TibrMsg
     public sendobject (String[] args) {
         try {
-            Tibrv.open(Tibrv.IMPL_NATIVE); // open Tibrv TibruQueue
-            queue = new Tibrueue (); // Create queue, dispatcher, simple
+            Tibrv.open(Tibrv.IMPL_NATIVE); // open Tibrv 
+            TibrvQueue queue = new TibrvQueue(); // Create queue, dispatcher, simple
             TibrvDispatcher disp = new TibrvDispatcher(queue);
             TibrvRvdTransport tport = new TibrvRvdTransport();
             TibrvListener listener = new TibrvListener (queue, this, tport, subject, null); // Create listener
             // create an object we want to send as a field in TibrvMsg
             PersonalData data = new PersonalData ("select distinct(*) from sales");
-            TibrvMsg msg = new TibrMsg ():// create the message
+            TibrvMsg msg = new TibrMsg():// create the message
             msg.setSendSubject(subject);
-            boolean ok = addObject (msg, fieldName, data.xmlString);// add object as a field
+            boolean ok = addObject(msg, fieldName, data.xmlString);// add object as a field
             if (!ok) {
                 System.err.println ("Failed to add object into message");
                 System.exit(0);
@@ -124,7 +124,7 @@ public class sendobject implements TibrvMsgCallback {
     public boolean addObject (TibruMsg msg, String fieldName, String object) {
         try {
             String array = object;
-            msg.add (fieldName, array);
+            msg.add(fieldName, array);
             return true;
         } catch (TibrvException e) {
             e.printStackTrace (System.err);
@@ -157,7 +157,7 @@ public class sendobject implements TibrvMsgCallback {
     * the Java object sent in a field of the message and then closes Tibrv.
     */
 
-    public void onMsg (TibrvListener listener, TibrMsg msg) {
+    public void onMsg (TibrvListener listener, TibrvMsg msg) {
         // try to retrieve the object
         try {
             Object object = getObject(msg,fieldName);
@@ -171,7 +171,7 @@ public class sendobject implements TibrvMsgCallback {
                 errmsg = errmsg +"No. of messages : "+msg.MSG+"\n";
                 errmsg = errmsg + "No. of in the message : "+msg.getNumFields() +"\n";
                 JOptionPane.showMessageDialog (null, errmsg+message, "Received XML Document", 1);
-                int noRows = confirmObject (message);
+                int noRows = confirmObject(message);
                 JOptionPane.showMessageDialog (null, noRows+" Row(s) sent back to Oracle", "XMLDoc", 1);
                 System.exit(0);
             }

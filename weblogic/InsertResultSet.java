@@ -7,6 +7,7 @@ import de.tudarmstadt.ito.xmldbms.DOMToDBMS;
 import de.tudarmstadt.ito.xmldbms.Map;
 import de.tudarmstadt.ito.xmldbms.mapfactories.MapFactory_MapDocument;
 import de.tudarmstadt.ito.mldbms.helpers.KeyGeneratorImpl;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -14,9 +15,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+
 import org.xml.sax.InputSource;
 import org.xml.sax.Parser; 
 import org.w3c.dom.Document;
+
 //Imports for the Oracle version 2 parser
 import de.tudarmstadt.ito.domutils.DF_Oracle2;
 import oracle.xml.parser.v2.SAXParser;
@@ -27,10 +30,10 @@ public class InsertResultSet {
 
     public static void main (String[] argv) {
         String mapFilename = "employee1.map",
-        xmIFilename = "employee_out.xml",
+        xmlFilename = "employee_out.xml",
         url = "jdbc:odbc:xmldbms";
         try {
-            toDBMS (mapFilename, mlFilename, url) ;
+            toDBMS (mapFilename, xmlFilename, url) ;
         } catch (IllegalArgumentException iae) {
             System.out.println("\nUsage: java InsertResultSet (-t <table-name> | -s ‹SELECT-statement>} ‹map-file> <xl-file>\n\nIf a SELECT statement is used, it must be enclosed in quotes. \n");
         } catch (Exception e) {
@@ -77,7 +80,7 @@ public class InsertResultSet {
         MapFactory_MapDocument factory;
         // Create a new map factory and create the Map.
         factory = new MapFactory_MapDocument (conn1, getSAXParser()) ;
-        return factory.createMap(new InputSource (get FileURL (mapFilename) ));
+        return factory.createMap(new InputSource (getFileURL(mapFilename)));
     }
 
     static String getFileURL (String fileName) {

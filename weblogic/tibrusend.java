@@ -13,7 +13,7 @@ Normally a listener such as tibrvlisten should be started first.
 */
 import java.util.*;
 import java.io.*;
-import oracle.ml.sql.query.OracleXMLQuery; 
+import oracle.xml.sql.query.OracleXMLQuery; 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -30,7 +30,7 @@ class SalesData {
     String port = "1521";
     String sid = "RSI";
     s1 = "jdbc:oracle:thin:@" + host + ":" + port + ":" + sid;
-    xmIString = "";
+    xmlString = "";
     String sqlstr = "";
 
     public SalesData (String sqlstr) {
@@ -41,7 +41,7 @@ class SalesData {
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sqlstr);
             OracleXMLQuery qry = new OracleXMLQuery (conn, rs);
-            this.xmlString = qry.getMLString(0);
+            this.xmlString = qry.getXMLString(0);
         } catch (SQLException se) {
                 String errmsg = "An SQL exception has occured \n";
                 errmsg = errmsg + "The error code is " + se.getErrorCode() +"\n";
@@ -73,7 +73,7 @@ public class tibrusend {
             // Set send subject into the message
             msg.setSendSubject(subject);
             // Send first message in sequence
-            msg.update(FIELD_NAME, firstmsg. xmlString);
+            msg.update(FIELD_NAME, firstmsg, xmlString);
             transport.send(msg);
             JOptionPane.showMessageDialog (null, msg.toString(), "First TIB/RV Message Sent", 0);
             System.exit(0);

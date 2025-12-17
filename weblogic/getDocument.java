@@ -112,7 +112,7 @@ public class getDocument {
     static void toXML(OracleXMLQuery gry, int typDoc, String extension) throws FileNotFoundException, IOException {
         try {
             FileOutputStream xmlFile;
-            String xmlString = qry.getXMLString (typDoc);
+            String xmlString = qry.getXMLString(typDoc);
             byte[] xmlPrt = xmlString.getBytes();
             String filename = "employee."+extension;
             xmlFile = new FileOutputStream(filename);

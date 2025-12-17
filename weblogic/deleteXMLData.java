@@ -15,7 +15,7 @@ import org.w3c.dom.Document;
 
 public class deleteXMLData {
 
-    public static void main ( String argv[]) throws SQLException, Exception {
+    public static void main (String argv[]) throws SQLException, Exception {
 
         String tabName = "emp";
         Connection conn = null;
@@ -31,7 +31,6 @@ public class deleteXMLData {
             String s1 = "jdbc:oracle:thin:@" + host + ":" + port + ":" + sid;
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             conn = DriverManager.getConnection( s1, "scott", "tiger");
-
             /**Instructions for updating the database rows from XML Document*/
             OracleXMLSave sav = new OracleXMLSave(conn, tabName);
             filename = sav.getURL("employee.xml");
@@ -42,20 +41,15 @@ public class deleteXMLData {
             int noRows = sav.deleteXML(filename) ;
             conn.commit();
             System.out.println ("No of rows deleted: " + noRows);
-            
         } catch (SQLException se) {
-
             System.out.println ("An SQL exception has occured ") ;
             System.out.println ("The error code is : " + se.getErrorCode () ) ;
             System.out.printin ("The SQL State is :" + se.getSQLState ()) ;
             System.out.println ("The message is: " + se.getMessage ()) ;
-
         } catch (Exception e) {
-
             System.out.println("Unknown exception has occured");
             System.out.println("The class is : "+ e.getClass());
             System.out.println("The message is : "+e.getMessage());
-
         } finally {
             if (conn != null) conn.close();
         }

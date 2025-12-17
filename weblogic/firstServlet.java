@@ -23,7 +23,7 @@ public class firstServlet extends HttpServlet {
         super.init();
         username = "scott";
         password = "tiger";
-        query = "select empno EMPNO, ename NAME, job JOB, sal SALARY, dname DEPARTMENT, loc PLACE, hiredate HIREDATE FROM emp, dept where emp. deptno=dept. deptno";
+        query = "select empno EMPNO, ename NAME, job JOB, sal SALARY, dname DEPARTMENT, loc PLACE, hiredate HIREDATE FROM emp, dept where emp.deptno=dept.deptno";
         host = "maple";
         port = "1521";
         sid = "PBSI";
@@ -52,7 +52,7 @@ public class firstServlet extends HttpServlet {
             DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
             con = DriverManager.getConnection(s1, username, password);
             DatabaseMetaData dma = con.getMetaData();
-            out.println("<pre>") ;
+            out.println("<pre>");
             out.println("Connected to : "+ dma.getURL());
             out.println("Driver : " + dma.getDriverName());
             out.println("Version : " + dma.getDriverVersion());
@@ -71,10 +71,10 @@ public class firstServlet extends HttpServlet {
             }
             out.println("</tr>");
             while (rs.next()) {
-                out.println ("<tr>") ;
+                out.println("<tr>");
                 for (i=1; i<=numCols; i++) {       
                     if (1<7) {
-                        out.println("<td›"+rs.getString (i)+"</td>") ; 
+                        out.println("<td>"+rs.getString (i)+"</td>") ; 
                     }
                     if (i>6) {
                         stoday=DateFormat.getDateInstance(2).format(rs.getDate(i));
@@ -87,13 +87,12 @@ public class firstServlet extends HttpServlet {
             stmt.close();
             con.close();
             out.println("</table><hr>");
-
         } catch (SQLException ex) {
             out.println("<hr>*** SQLException caught ***<p>");
-            while (ex ! = null) {
+            while (ex != null) {
                 out.println("SQLState: " + ex.getSQLState() + "<br>"); 
-                out.println ("Message: " + ex.getMessage() + "<br>");
-                out.println ("Vendor:" + ex.getErrorCode() + "<br>");
+                out.println("Message: " + ex.getMessage() + "<br>");
+                out.println("Vendor:" + ex.getErrorCode() + "<br>");
                 ex.printStackTrace(out);
                 ex = ex.getNextException();
             }

@@ -7,11 +7,11 @@ import java.awt.event.*;
 
 public class dataFrame extends JFrame {
 
-    TextArea resultXML = new TextArea();
-    JTextField txtRoot = new TextField();
-    JTextField txtSub = new TextField();
+    JTextArea resultXML = new JTextArea();
+    JTextField txtRoot = new JTextField();
+    JTextField txtSub = new JTextField();
     JTextField txtCSVname = new JTextField();
-    JLabel jLabell = new JLabel();
+    JLabel jLabel1 = new JLabel();
     JLabel jLabel2 = new JLabel();
     JLabel jLabel3 = new JLabel();
     JTextField txtMapname = new JTextField();
@@ -74,7 +74,7 @@ public class dataFrame extends JFrame {
         tranButton.setBounds(new Rectangle (69, 209, 210, 27));
 
         jLabe15.setText("Converting CSV flat file format into XMI Document format");
-        jLabel5.setForeground(Color.blue) : 
+        jLabel5.setForeground(Color.blue);
         jLabel5.setFont(new Font("Serif", 3,12));
         jLabe15.setBounds(new Rectangle (5, 30, 352, 17));
 
@@ -85,8 +85,8 @@ public class dataFrame extends JFrame {
             }
         });
 
-        jLabell.setText("Root Element");
-        jLabell.setBounds(new Rectangle (60, 73, 83, 17));
+        jLabel1.setText("Root Element");
+        jLabel1.setBounds(new Rectangle (60, 73, 83, 17));
         jLabel2.setText("Sub Element");
         jLabe12.setBounds(new Rectangle (68, 111, 76, 17));
         jLabel3.setText("Filename of CSV file");
@@ -106,7 +106,7 @@ public class dataFrame extends JFrame {
         this.getContentPane().add (txtMapname, null);
         this.getContentPane().add(jLabel4, null);
         this.getContentPane().add(tranButton, null);
-        this.getContentPane().add(jLabel, null);
+        this.getContentPane().add(jLabel5, null);
         this.getContentPane().add(jScrollPanel, null);
 
         jScrollPanel.getViewport().add(resultXML,null);

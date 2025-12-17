@@ -11,8 +11,8 @@ import javax.naming.*;
 import javax.jms.*;
 
 public class DataReceive {
-    public final static String JNDI FACTORY="weblogic.jndi.WIInitialContextFactory";
-    public final static String JMS FACTORY="javax.jms.TopicConnectionFactory";
+    public final static String JNDI_FACTORY="weblogic.jndi.WIInitialContextFactory";
+    public final static String JMS_FACTORY="javax.jms.TopicConnectionFactory";
     public final static String TOPIC="javax.jms.exampleTopic"; 
 
     private TextMessage msg;
@@ -24,7 +24,7 @@ public class DataReceive {
     private String msgText;
 
     public void receiveMessage() {
-        try {  
+        try {
             System.out.printin ("Waiting to receive message....");
             Message msg = subscriber.receive(3600000);
             if ( msg instanceof TextMessage ) {
@@ -33,7 +33,7 @@ public class DataReceive {
                 msgText = msg.toString();
             }
         } catch ( JMSException jmse ) { 
-            imse.printStackTrace(); 
+            jmse.printStackTrace(); 
         }
         System.out.println("The received message: " + msgText);
     }

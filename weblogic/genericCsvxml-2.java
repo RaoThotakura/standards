@@ -33,7 +33,7 @@ public class genericCsvxml {
             BufferedReader elementRdr = new BufferedReader(new FileReader (tagFileName));
             ArrayList elementList = new ArrayList();
 
-            while ((nextElement = elementRdr.readLine ()) != null) {
+            while ((nextElement = elementRdr.readLine()) != null) {
                 tagName = nextElement;
                 elementList.add(tagNo, tagName);
                 tagNo++;
@@ -50,7 +50,7 @@ public class genericCsvxml {
                 xmlStr = xmlStr + "\t" + "<" + subElement + ">" + "\n" ;
 
                 while (st.hasMoreTokens()) {
-                    for (int j=0; j<elementList. size (); j++) {
+                    for (int j=0; j<elementList.size(); j++) {
                         xmlStr = xmlStr + "\t" + "<" + elementList.get(j) + ">";
                         xmlStr = xmlStr + st.nextToken();
                         xmlStr = xmlStr + "</" + elementList.get(j) + ">" + "\n" ;

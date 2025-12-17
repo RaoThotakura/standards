@@ -20,7 +20,7 @@ public class tibrvlisten implements TibrvMsgCallback {
             // Create RVD transport
             TibrvRvdTransport transport = null;
             transport = new TibrvRvdTransport();
-            TibruQueue queue = new TibrQueue();
+            TibrvQueue queue = new TibrvQueue();
             // create listener using default queue
             TibrvListener listener = new TibrvListener (Tibrv.defaultQueue(), this, transport, subject, null);
             Tibrv.defaultQueue().dispatch();
@@ -33,7 +33,7 @@ public class tibrvlisten implements TibrvMsgCallback {
         }
     }
 
-    public void onMsg (TibrvListener listener, TibrMsg msg) {
+    public void onMsg (TibrvListener listener, TibrvMsg msg) {
         try {
             Object array = msg.get(FIELD_NAME);
             String recDate = "Received on : " + (new Date()).toString() + "\n";

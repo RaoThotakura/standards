@@ -25,9 +25,11 @@ public class updateXMLData {
             String sl = "jdbc:oracle:thin:" + host + ":" + port + ":" + sid;
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             conn = DriverManager.getConnection(s1, "scott", "tiger");
+
             //init a JDBC connection using Sun's JDBC-ODBC Bridge 
             /*Class. forName ("sun. jdbc. odbc. JdbcOdbcDriver") ;
             conn = DriverManager.getConnection (url, "scott", "tiger"); */
+            
             //Instructions for updating the database rows from XML Document
             OracleXMLSave sav = new OracleXMLSave(conn, tabName);
             filename = sav.getURL("employee.xml");

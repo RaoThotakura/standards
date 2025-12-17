@@ -36,17 +36,17 @@ class PersonalData {
     public PersonalData (String sqlstr) {
         try { 
             this.sqlstr = sqlstr;
-            DriverManager.registerDriver(new oracle.jdoc.driver.OracleDriver ());
-            conn = DriverManager.getConnection ( sl, "rsi", "rsi");
+            DriverManager.registerDriver(new oracle.jdoc.driver.OracleDriver());
+            conn = DriverManager.getConnection(s1, "rsi", "rsi");
             stmt = conn.createStatement();
-            rs = stmt.executeQuery (sqlstr) ;
+            rs = stmt.executeQuery (sqlstr);
             OracleXMLQuery qry = new OracleXMLQuery (conn, rs) ;
-            this.xmlString = qry.getMLString(0);
+            this.xmlString = qry.getXMLString(0);
         } catch (SQLException se) {
             System.out.println ("An SQL exception has occured ");
-            System.out.println ("The error code is : "+ se. getErrorCode ());
-            System.out.println ("The SQL State:" + se. getSQLState ());
-            System.out.println ("The message is: " + se. getMessage ());
+            System.out.println ("The error code is : "+ se.getErrorCode());
+            System.out.println ("The SQL State:" + se.getSQLState());
+            System.out.println ("The message is: " + se.getMessage());
         }
     }
 
@@ -87,9 +87,9 @@ public class sendobject implements TibrvMsgCallback {
                 System.err.printin ("Failed to add object into message");
                 System.exit(0);
             }
-                // send the message
-                tport.send(msg);
-                // wait until the listener receives the messages and closes Tibrv
+            // send the message
+            tport.send(msg);
+            // wait until the listener receives the messages and closes Tibrv
             try {
                 disp.join();
             } catch (InterruptedException e) {
@@ -132,7 +132,7 @@ public class sendobject implements TibrvMsgCallback {
     * the Java object sent in a field of the message and then
     * closes Tibrv.
     *--*/
-    public void onMsg (TibrvListener listener, TibrMsg msg) {
+    public void onMsg (TibrvListener listener, TibrvMsg msg) {
         // try to retrieve the object
         try {
             Object object = getObject(msg, fieldName);
