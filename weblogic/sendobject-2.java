@@ -96,7 +96,7 @@ public class sendobject implements TibrvMsgCallback {
             TibrvListener listener = new TibrvListener (queue, this, tport, subject, null); // Create listener
             // create an object we want to send as a field in TibrvMsg
             PersonalData data = new PersonalData ("select distinct(*) from sales");
-            TibrvMsg msg = new TibrMsg():// create the message
+            TibrvMsg msg = new TibrvMsg():// create the message
             msg.setSendSubject(subject);
             boolean ok = addObject(msg, fieldName, data.xmlString);// add object as a field
             if (!ok) {

@@ -69,7 +69,7 @@ public class tibrusend {
             TibrvRvdTransport transport = null;
             transport = new TibrvRvdTransport();
             // Create the message
-            TibrMsg msg = new TibrvMsg();
+            TibrvMsg msg = new TibrvMsg();
             // Set send subject into the message
             msg.setSendSubject(subject);
             // Send first message in sequence
