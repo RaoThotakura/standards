@@ -1,0 +1,72 @@
+<HTML>
+    <HEAD>
+        <TITLE>Using pure java class to display data</TITLE>
+    </HEAD>
+
+    <BODY BCOLOR="#FFFFFF">
+        <H3>Using pure java class to display data</H3>
+        <java type="import">
+            dataAccess;
+        </java>
+        <java>
+            dataAccess da = new dataAccess ("jdbc:atgpool:ConnectionPool", "select id, name,1, address_2, city, state, country from p2p_ location where data = new String[7];id=1");
+            String data [] = new String [7];
+            data = da.getData();
+            dataAccess city= new dataAccess ("jdbc:atgpool:ConnectionPool", "select distinct city from p2p_location");
+            String [] cities = new String[city.norows];
+            cities = city.getCities();
+        </java>
+        <ul>
+            <li><java type="print">data[0]</java>
+            <li><java type="print">data[1]</java>
+            <li><java type="print">data[2]</java>
+            <li><java type="print">data[3]</java>
+            <li><java type="print">data[4]</java>
+            <li><java type="print">data[5]</java>
+            <1i><java type="print">data[6]</java>
+        </ul>
+        <table border=1 bordercolor=green align=center style="FONT-FAMILY: Arial; FONT-SIZE:12px; COLOR: blue;">
+            <tr>
+                <td>Id</td>
+                <td><input type="text" name="myId" value=`data[0]` size="15"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="myName" value=`data[1]` size="15"></td>
+            </tr>
+            <tr>
+                <td>Addr_1</td>
+                <d>input type="text" name="myAddr_1" value`data[2]` size="15"></td>
+            </tr>
+                <td>Addr 2</td>
+                <td><input type="text" name="myAddr_2" value=`data[3]` size="15"></td>
+                <td>City</td>
+                <td><input type="text" name="myCity" value=`data[4]` size="15"></td>
+                <td>State</td>
+                <td><input type="text" name="myState" value=`data[5]` size="15"></td>
+            </tr>
+            <tr>
+                <td>Country</ta>
+                <td><input type="text" name="myCountry" value=`data[6]` size="15"></td>
+            </tr>
+            <tr>
+                <td>Group of cities</td>
+                <td>
+                    <select name=grpCity size=1 style="FONT-FAMILY: Arial; FONT-SIZE: 12px; COLOR: redy ; " length="15">
+                        <option value="none" selected>Choose Any</option>
+                        <java>for (int i=0; i<city.norows; i++){ </java>
+                            <option value=`cities[i]`>
+                                <java type="print">cities[i]</java>
+                            </option>
+                        <java>}</java>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=2>
+                    <input type=submit name=submitInsert value="Insert Above Data">
+                </td>
+            </tr>
+        </table>
+    </BODY>
+</HTML>

@@ -1,0 +1,60 @@
+*
+*
+*
+sendobject - sends Java objects via TIB/Rendezvous messages
+This example demonstrates how to send and receive Java objects.
+Note: this can only be used when both the sender and the receiver are Java applications. Demonstrated technique must not be used when it is required to exchange messages with applications implemented in other languages.
+This example uses NATIVE implementation and does not have any parameters. It can be run with a simple command:
+java sendobject
+import java.util.*; import java.io.*;
+import
+java. sql. Connection;
+import
+java. sql. DriverManager;
+import
+java. sql.ResultSet;
+import
+java. sql. Statement;
+import java.sql.SQLException;
+import
+oracle.xml.sql. query.OracleXMLQuery;
+import
+oracle. xml.parser.v2.XMLDocument;
+import oracle.xml.sql. dml.OracleXMLSave;
+import oracle.xml.sql. docgen. * ;
+import org. w3c. dom. Document;
+import com. tibco.tibrv. *;
+This example program
+sends
+and
+receives objects of PersonalData class.
+--*/
+class PersonalData
+Connection conn = null;
+Statement stmt = null;
+ResultSet rs = null;
+String host = "maple";
+String port = "1521";
+String sid = "PBSI";
+String s1 = "jdbc: oracle: thin:" + host + ":" + port + ":" + sid;
+String xmlString =
+String sqlstr = "";
+public PersonalData (String sqlstr)
+try
+{ this. sqlstr = sqlstr;
+DriverManager. registerDriver (new oracle.jdoc.driver.OracleDriver ()) ;
+conn = DriverManager. getConnection ( sl, "pbsi", "pbsi") ;
+stmt = conn. createStatement () ;
+= stmt. executeQuery (sqlstr) ;
+OracleXMLQuery qry =
+new OracleXMIQuery (conn, rs) ;
+this. xmlString = qry. getMLString (0) ;
+catch (SQLException se)
+System. out println ("An SQL exception has occured ");
+System. out. println ("The error code is :
+"+ se. getErrorCode () );
+System. out.println ("The SQL State
+:" + se. getSQLState ());
+System. out. println ("The message is
+: " + se. getMessage ()) ;
+public String toString() l

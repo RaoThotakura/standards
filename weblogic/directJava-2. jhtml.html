@@ -1,0 +1,25 @@
+<HTML>
+    <HEAD>
+        <TITLE>Using pure java class to display data</TITLE>
+    </HEAD>
+    <BODY BCOLOR="#FFFFFF">
+        <H3>Using pure java class to display data</H3>
+        <java type="import"> 
+            dataAccess;
+        </java>
+        <java>
+            dataAccess da = new dataAccess ("jdbc:atgpool:ConnectionPool","select id, name, address_1, address_2, state, city, country from p2p_location where id=12");
+            String [] data = new String[7];
+            data = da.getData();
+        </java>
+        <ul>
+            <li><java type="print">data[0]</java>
+            <li><java type="print">data[1]</java>
+            <li><java type="print">data[2]</java>
+            <li><java type="print">data[3]</java>
+            <li><java type="print">data[4]</java>
+            <li><java type="print">data[5]</java> 
+            <li><java type="print">data[6]</java>
+        </ul>
+    </BODY>
+</HTML>
