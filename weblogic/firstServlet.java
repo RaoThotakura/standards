@@ -67,7 +67,7 @@ public class firstServlet extends HttpServlet {
             out.println("<table border=1>");
             out.println("<tr>");
             for (i=1; i<=numCols; i++) {
-                out.println("<th>" + rsmd.getColumnLabel (i) + "</th>");
+                out.println("<th>" + rsmd.getColumnLabel(i) + "</th>");
             }
             out.println("</tr>");
             while (rs.next()) {

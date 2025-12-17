@@ -28,7 +28,7 @@ class PersonalData {
     ResultSet rs = null;
     String host = "maple";
     String port = "1521";
-    String sid = "PBSI";
+    String sid = "rsi";
     String s1 = "jdbc:oracle:thin:" + host + ":" + port + ":" + sid;
     String xmlString = "";
     String sqlstr = "";
@@ -37,16 +37,16 @@ class PersonalData {
         try { 
             this.sqlstr = sqlstr;
             DriverManager.registerDriver(new oracle.jdoc.driver.OracleDriver ());
-            conn = DriverManager. getConnection ( sl, "pbsi", "pbsi");
+            conn = DriverManager.getConnection ( sl, "rsi", "rsi");
             stmt = conn.createStatement();
-            rs = stmt. executeQuery (sqlstr) ;
-            OracleXMLQuery qry = new OracleXMIQuery (conn, rs) ;
+            rs = stmt.executeQuery (sqlstr) ;
+            OracleXMLQuery qry = new OracleXMLQuery (conn, rs) ;
             this.xmlString = qry.getMLString(0);
         } catch (SQLException se) {
-            System. out println ("An SQL exception has occured ");
-            System. out. println ("The error code is : "+ se. getErrorCode ());
-            System. out.println ("The SQL State:" + se. getSQLState ());
-            System. out. println ("The message is: " + se. getMessage ());
+            System.out.println ("An SQL exception has occured ");
+            System.out.println ("The error code is : "+ se. getErrorCode ());
+            System.out.println ("The SQL State:" + se. getSQLState ());
+            System.out.println ("The message is: " + se. getMessage ());
         }
     }
 
@@ -135,10 +135,10 @@ public class sendobject implements TibrvMsgCallback {
     public void onMsg (TibrvListener listener, TibrMsg msg) {
         // try to retrieve the object
         try {
-            Object object = getObject (msg, fieldName);
+            Object object = getObject(msg, fieldName);
             String message = object.toString();
-            String sub = msg. getSendSubject();
-            String rep = msg. getReplySubject();
+            String sub = msg.getSendSubject();
+            String rep = msg.getReplySubject();
             byte [] recMsg = msg.getAsBytes();
             String strType = msg.getTypeName (msg. STRING);
             if (object == null) {
@@ -153,14 +153,14 @@ public class sendobject implements TibrvMsgCallback {
             }
             Tibrv.close();
         } catch (TibrvException e) {
-            System.err.println (e.toString()) ;
+            System.err.println(e.toString()) ;
         }
     }
     /*-
     * main
     */
     public static void main (String[] args) {
-        sendobject t = new sendobject (args);
+        sendobject t = new sendobject(args);
     }
 }
 

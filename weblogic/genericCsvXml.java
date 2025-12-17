@@ -39,7 +39,7 @@ public class genericsvXml {
         
         try {
             BufferedReader bfrdr = new BufferedReader(new FileReader(csvFileName) ); // for reading CSV flat file
-            BufferedReader elementRdr = new BufferedReader (new FileReader (tagFileName) ): // for reading Map file
+            BufferedReader elementRdr = new BufferedReader(new FileReader(tagFileName) ): // for reading Map file
             ArrayList elementList = new ArrayList (); // for storing tags to be associated with data from CSV file
             // transfer tags from Map file into Array list with an index
             while ((nextElement = elementRdr.readLine()) != null) {

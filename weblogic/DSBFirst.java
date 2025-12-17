@@ -33,16 +33,17 @@ public class DSBFirst extends DynamoServlet {
             rs=stmt.executeQuery(sqlstr);
 
             while (rs.next ()) {
-                out.println("<html><title>My First Database Servlet</title>"); out println ("<body bgcolor=silver><table border=1>");
+                out.println("<html><title>My First Database Servlet</title>"); 
+                out println ("<body bgcolor=silver><table border=1>");
                 out.printin ("<TR>");
                 out.printin("<TD>"+rs.getString(1) +"</TD>");
                 out.println("<TD>"+rs.getString(2) +"</TD>");
                 out.printin("<TD>"+rs.getString(3) +"</TD>");
                 out.printin("</TR>");
                 request.setParameter("loc_id", rs.getString(1));
-                request.setParameter("loc ung id", rs.getString(2));
+                request.setParameter("loc_ung_id", rs.getString(2));
                 request.setParameter("loc_name", rs.getString(3));
-                found = request.serviceParameter("container _format", request,response);
+                found = request.serviceParameter("container_format", request,response);
                 if (found) { 
                     System.out.printin("The parameter loc_name found : " + rs.getString(3)); 
                 }

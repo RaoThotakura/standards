@@ -1,8 +1,8 @@
 import java.sql.Connection;
-import java. sql. DriverManager;
-import java. sql.ResultSet;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java. sql. Statement;
+import java.sql.Statement;
 import java.sql.SQLException;
 /**The instance of this class can be
 * using Page Compilation Version 0.2
@@ -14,7 +14,7 @@ public class dataAccess {
     public Connection conn = null;
     public Statement stmt = null;
     public ResultSet rs = null;
-    public String (] data = new String [7];
+    public String[] data = new String [7];
     public int norows=0;
     public String [] cities;
     public dataAccess (String url, String query) {
@@ -53,7 +53,7 @@ public class dataAccess {
             stmt.executeQuery(query) ;
             int i=0,j=1;
             while (rs.next()) {
-                this.cities(i] = rs.getString(j);
+                this.cities[i] = rs.getString(j);
                 i++;
             }
         } catch (SQLException se) {

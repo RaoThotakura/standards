@@ -16,7 +16,7 @@ public ResultSet rs = null;
 public String [] data = new String [7];
 public dataAccess (String url, String query) {
     this.url = url;
-    this. query = query;
+    this.query = query;
 }
 
 public String[] getData () {
@@ -25,13 +25,13 @@ public String[] getData () {
         this.stmt = conn.createStatement();
         rs = stmt.executeQuery (query);
         while (rs.next()) {
-            this.data [0] = rs.getString(1);
-            this.data [1] = rs.getString(2);
-            this.data [2] = rs.getString(3);
-            this.data [3] = rs.getString(4);
-            this.data [4] = rs.getString(5);
-            this.data [5] = rs.getString(6);
-            this.data [6] = rs.getString(7);
+            this.data[0] = rs.getString(1);
+            this.data[1] = rs.getString(2);
+            this.data[2] = rs.getString(3);
+            this.data[3] = rs.getString(4);
+            this.data[4] = rs.getString(5);
+            this.data[5] = rs.getString(6);
+            this.data[6] = rs.getString(7);
         }
     } catch (SQLException se) {
         se. printStackTrace () ;

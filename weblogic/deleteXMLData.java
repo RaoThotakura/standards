@@ -46,9 +46,9 @@ public class deleteXMLData {
         } catch (SQLException se) {
 
             System.out.println ("An SQL exception has occured ") ;
-            System.out.println ("The error code is : " + se. getErrorCode () ) ;
-            System.out.printin ("The SQL State is :" + se. getSQLState ()) ;
-            System.out.println ("The message is: " + se. getMessage ()) ;
+            System.out.println ("The error code is : " + se.getErrorCode () ) ;
+            System.out.printin ("The SQL State is :" + se.getSQLState ()) ;
+            System.out.println ("The message is: " + se.getMessage ()) ;
 
         } catch (Exception e) {
 

@@ -58,11 +58,11 @@ public class dataFrame extends JFrame {
         txtSub.setBounds(new Rectangle (160, 107, 122, 22));
 
         txtSVname.setBackground(Color.orange);
-        txtSVname.setText (" ");
+        txtSVname.setText(" ");
         txtCSVname.setBounds(new Rectangle (159, 138, 125, 23));
 
         txtMapname.setBackground(Color.pink);
-        txtMapname.setText (" ");
+        txtMapname.setText(" ");
         txtMapname.setBounds(new Rectangle (159, 171, 127, 24));
 
         jLabel4.setText("Map");
@@ -75,7 +75,7 @@ public class dataFrame extends JFrame {
 
         jLabe15.setText("Converting CSV flat file format into XMI Document format");
         jLabel5.setForeground(Color.blue) : 
-        jLabel5.setFont(new Font ("Serif", 3,12));
+        jLabel5.setFont(new Font("Serif", 3,12));
         jLabe15.setBounds(new Rectangle (5, 30, 352, 17));
 
         jScrollPanel.setBounds(new Rectangle (40, 286, 272, 263));
@@ -120,7 +120,7 @@ public class dataFrame extends JFrame {
             BufferedReader bfrdr = new BufferedReader (new FileReader(txtCSVname.getText())) : // for reading CSV flat file
             BufferedReader elementRdr = new BufferedReader (new FileReader(txtMapname.getText())) : // for reading Map file
             ArrayList elementList = new ArrayList(); // for storing tags to be associated with data from CSV file
-            while ((nextElement = elementRdr.readLine ()) != null) {
+            while ((nextElement = elementRdr.readLine()) != null) {
                 tagName = nextElement;
                 elementList.add(tagNo, tagName);
                 tagNo++;
@@ -131,7 +131,7 @@ public class dataFrame extends JFrame {
             while ((nextLine = bfrdr.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(nextLine, ",");
                 tokenCount = st.countTokens();
-                xmlStr = xmlStr + " <" + txtSub.getText () + ">" + "In";
+                xmlStr = xmlStr + " <" + txtSub.getText() + ">" + "In";
                 while (st.hasMoreTokens()) {
                     for (int j=0; j<elementList.size(); j++) {
                         nextWord = st.nextToken();

@@ -109,7 +109,7 @@ public class getDocument {
      * use 2 for getting XML Schema Defintion along with XML Document 
      * */
 
-    static void toML(OracleXMLQuery gry, int typDoc, String extension) throws FileNotFoundException, IOException {
+    static void toXML(OracleXMLQuery gry, int typDoc, String extension) throws FileNotFoundException, IOException {
         try {
             FileOutputStream xmlFile;
             String xmlString = qry.getXMLString (typDoc);

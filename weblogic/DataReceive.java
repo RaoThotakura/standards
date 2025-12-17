@@ -33,7 +33,7 @@ public class DataReceive {
                 msgText = msg.toString();
             }
         } catch ( JMSException jmse ) { 
-            imse.printStackTrace (); 
+            imse.printStackTrace(); 
         }
         System.out.println("The received message: " + msgText);
     }
@@ -41,7 +41,7 @@ public class DataReceive {
     public void init (Context ctx, String topicName) throws NamingException, JMSException {
         connectionFactory = (TopicConnectionFactory) ctx.lookup(JMS_FACTORY);
         connection = connectionFactory.createTopicConnection() ;
-        connection.setClientID ("trader");
+        connection.setClientID("trader");
         session = connection.createTopicSession(false, Session.AUTO_ACKNOWLEDGE);
         try {
             topic = (Topic) ctx.lookup(topicName);

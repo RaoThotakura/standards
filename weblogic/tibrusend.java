@@ -36,8 +36,8 @@ class SalesData {
     public SalesData (String sqlstr) {
         try {
             this.sqlstr = sqlstr;
-            DriverManager.registerDriver (new oracle. jdbc.driver. OracleDriver ());
-            conn = DriverManager.getConnection(s1, "posi", "posi");
+            DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
+            conn = DriverManager.getConnection(s1, "rsi", "rsi");
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sqlstr);
             OracleXMLQuery qry = new OracleXMLQuery (conn, rs);

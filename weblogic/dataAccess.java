@@ -26,18 +26,18 @@ public class dataAccess extends HttpServlet {
             rs = stmt.executeQuery(sqlstr);
             System.out.println("Result Set returned.•");
             while (rs.next())
-            System.out.println(rs.getString(1)+"" +rs.getString(2) +""+rs.getString(3) +""+rs.getString(4));
+                System.out.println(rs.getString(1)+"" +rs.getString(2) +""+rs.getString(3) +""+rs.getString(4));
         } catch (SQLException se) {
-            System.out.println ("An SQL exception has occured ") ;
-            System.out.println ("The error code is : " + se. getErrorCode ()) ;
-            System.out.println ("The SQL State is : "+ se.getSQLState());
-            System.out.println ("The message is: " + se. getMessage ());
+            System.out.println("An SQL exception has occured ") ;
+            System.out.println("The error code is : " + se. getErrorCode()) ;
+            System.out.println("The SQL State is : "+ se.getSQLState());
+            System.out.println("The message is: " + se. getMessage());
 
         } catch (Exception e) {
-            System.out.println ("Unknown exception has occured");
-            e.printStackTrace ();
+            System.out.println("Unknown exception has occured");
+            e.printStackTrace();
         } finally {
-            if (rs != null) rs. close ();
+            if (rs != null) rs.close();
             if (stmt != null) stmt.close();
             if (conn != null) conn.close();
         }

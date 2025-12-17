@@ -34,8 +34,8 @@ class PersonalData {
     ResultSet rs = null;
     String host = "maple";
     String port = "1521";
-    String sid = "PBSI" ;
-    String s1 = "jdbc: oracle: thin:" + host + ":" + port + ":" + sid;
+    String sid = "RSI" ;
+    String s1 = "jdbc:oracle:thin:" + host + ":" + port + ":" + sid;
     String xmlString =" ";
     String sqlstr = "";
 
@@ -43,16 +43,16 @@ class PersonalData {
         try {
             this.sqlstr = sqlstr;
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
-            conn = DriverManager.getConnection( s1, "pbsi", "pbsi");
+            conn = DriverManager.getConnection( s1, "rsi", "rsi");
             stmt = conn.createStatement();
             OracleXMLQuery qry = new OracleXMLQuery(conn,rs);
             rs = stmt.executeQuery(sqlstr);
             this.xmlString = qry.getMLString(3);
         } catch (SQLException se) {
             String errmsg = "An SQL exception has occured \n";
-            errmsg = errmsg + "The error code is : " + se.getErrorCode () +"\n" ;
-            errmsg = errmsg +"The SQL State is :" + se.getSQLState () +"\n" ;
-            errmsg = errmsg +"The message is: " + se.getMessage () +"\n" ;
+            errmsg = errmsg + "The error code is : " + se.getErrorCode() +"\n" ;
+            errmsg = errmsg +"The SQL State is :" + se.getSQLState() +"\n" ;
+            errmsg = errmsg +"The message is: " + se.getMessage() +"\n" ;
             JOptionPane.showMessageDialog (null, errmsg, "SQL Error", 2);
             System.exit(0);
         }
@@ -61,14 +61,14 @@ class PersonalData {
     public PersonalData () {
         try {
             DriverManager registerDriver (new oracle.jdbc.driver.OracleDriver ());
-            conn = DriverManager. getConnection ( s1, "pbsi", "pbsi");
+            conn = DriverManager.getConnection ( s1, "rsi", "rsi");
         } catch (SQLException se) {
             String errmsg = "An SQL exception has occured \n" ;
             errmsg = errmsg + "The error code is:"+ se.getErrorCode()+"\n" ;
             errmsg = errmsg +"The SQL State is : " + se.getSQLState() +"\n" ;
             errmsg = errmsg +"The message is: " + se.getMessage() +"\n" ;
-            JOptionPane. ShowMessageDialog (null, errmsg, "SQL Error", 2) ;
-            System.exit (0);
+            JOptionPane.ShowMessageDialog (null, errmsg, "SQL Error", 2) ;
+            System.exit(0);
         }
     }
 

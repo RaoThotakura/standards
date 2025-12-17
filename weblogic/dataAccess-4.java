@@ -21,8 +21,8 @@ looks somewhat similiar to DataGrid Activex in V.B. 6. 0 on a SWING Component ca
 */
 public class dataAccess extends JFrame {
 
-    Vector colheads = new Vector () ;
-    Vector rows = new Vector () ;
+    Vector colheads = new Vector();
+    Vector rows = new Vector();
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
@@ -35,7 +35,7 @@ public class dataAccess extends JFrame {
         query = "select empno EMPNO, ename NAME, job JOB, sal SALARY, dname DEPARTMENT, loc PLACE, to_char (hiredate, ' dd/mm/YVYY') HIREDATE FROM emp, dept where emp. deptno=dept. deptno";
         host = "maple";
         port = "1521";
-        s1 = "jdbc: oracle: thin:@" + host + ":" + port + ":" + sid;
+        s1 = "jdbc:oracle:thin:@" + host + ":" + port + ":" + sid;
         rs = getTable() ;
         ResultSetMetaData rsd = rs.getMetaData();
         numCol=rsmd.getColumnCount();
@@ -53,16 +53,16 @@ public class dataAccess extends JFrame {
     
     public ResultSet getTable() throws SQLException {
         try { 
-            DriverManager. registerDriver (new oracle. jdbc.driver .OracleDriver ()) ;
-            conn = DriverManager. getConnection (sl, "scott", "tiger") ;
+            DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver()) ;
+            conn = DriverManager.getConnection (s1, "scott", "tiger") ;
             stmt = conn.createStatement();
             rs = stmt.executeQuery (query);
         } catch (SQLException se) {
             System.out.println("An SQL exception has occured ") ;
             System.out.println("The error code is : " + se.getErrorCode());
             System.out.println("The SQL State" + se.getSQLState());
-            System.out.println ("The message is : " + se.getMessage ());
-            se.printStackTrace ();
+            System.out.println("The message is : " + se.getMessage ());
+            se.printStackTrace();
         }
         return rs;
     };

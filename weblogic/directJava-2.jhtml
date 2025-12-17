@@ -9,7 +9,7 @@
         </java>
         <java>
             dataAccess da = new dataAccess ("jdbc:atgpool:ConnectionPool","select id, name, address_1, address_2, state, city, country from p2p_location where id=12");
-            String [] data = new String[7];
+            String[] data = new String[7];
             data = da.getData();
         </java>
         <ul>

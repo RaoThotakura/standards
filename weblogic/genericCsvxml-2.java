@@ -53,14 +53,14 @@ public class genericCsvxml {
                     for (int j=0; j<elementList. size (); j++) {
                         xmlStr = xmlStr + "\t" + "<" + elementList.get(j) + ">";
                         xmlStr = xmlStr + st.nextToken();
-                        xmlStr = xmlStr + "</" + elementList.get(j) + "›" + "\n" ;
+                        xmlStr = xmlStr + "</" + elementList.get(j) + ">" + "\n" ;
                     }
                 }
                 xmlStr = xmlStr + "</" + subElement + ">" + "\n" ;
                 i++;
             }
 
-            xmIStr = xmlStr + "</" + rootElement + ">";
+            xmlStr = xmlStr + "</" + rootElement + ">";
             byte[] xmlPrt = xmlStr.getBytes();
             xmlFile.write(xmlPrt);
             System.out.println ("No. of records read : " + i);

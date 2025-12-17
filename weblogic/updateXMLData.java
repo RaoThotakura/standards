@@ -21,7 +21,7 @@ public class updateXMLData {
             //init a JDBC connection using Oracle's JDBC Drivers
             String host = "maple";
             String port = "1521";
-            String sid = "PBSI";
+            String sid = "rsi";
             String sl = "jdbc:oracle:thin:" + host + ":" + port + ":" + sid;
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
             conn = DriverManager.getConnection(s1, "scott", "tiger");
@@ -37,7 +37,7 @@ public class updateXMLData {
             String[] updCol = { "ENAME" };
             sav.setKeyColumnList(keyCol);
             sav.setUpdateColumnList(updCol);
-            int noRows = sav.updateXML (filename) ;
+            int noRows = sav.updateXML(filename) ;
             conn.commit();
             System.out.println("No of rows updated : " + noRows);
         } catch (SQLException se) {

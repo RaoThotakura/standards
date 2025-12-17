@@ -47,10 +47,10 @@ public class InsertResultSet {
         try {
             // Connect to the database and get the result set
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            conn1 = DriverManager.getConnection (url, "pbsi", "pbsi");
-            conn2 = DriverManager.getConnection (url, "pbsi", "pbsi");
+            conn1 = DriverManager.getConnection (url, "rsi", "rsi");
+            conn2 = DriverManager.getConnection (url, "rsi", "rsi");
             // Create and initialize a key generator
-            keyGenerator = new KeyGeneratorImpl(conn1) ;
+            keyGenerator = new KeyGeneratorImpl(conn1);
             keyGenerator.initialize();
             // Create the Map object.
             map = createMap(mapFilename, conn1);
