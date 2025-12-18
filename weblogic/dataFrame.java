@@ -117,8 +117,8 @@ public class dataFrame extends JFrame {
 
     void tranButton_actionPerformed (ActionEvent e) {
         try {
-            BufferedReader bfrdr = new BufferedReader (new FileReader(txtCSVname.getText())) : // for reading CSV flat file
-            BufferedReader elementRdr = new BufferedReader (new FileReader(txtMapname.getText())) : // for reading Map file
+            BufferedReader bfrdr = new BufferedReader (new FileReader(txtCSVname.getText())); // for reading CSV flat file
+            BufferedReader elementRdr = new BufferedReader (new FileReader(txtMapname.getText())); // for reading Map file
             ArrayList elementList = new ArrayList(); // for storing tags to be associated with data from CSV file
             while ((nextElement = elementRdr.readLine()) != null) {
                 tagName = nextElement;
