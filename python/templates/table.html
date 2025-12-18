@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+    <h1>Second</h1><h2>Flask :: FastAPI</h2><h1>Webpage</h1>
+    <div>
+        Instructions
+        To start server : flask --app renderFlask run --debug
+    </div>
+
+    <ul id="navigation">
+        {% if hero %}
+            <h3>Stock data printing: </h3>
+            {% for k,v in hero.items() %}
+                <li>{{ k }} <--> {{ v }}</li>
+            {% endfor %}
+        {% elif heroes %}
+            <h3>Column wise data printing: </h3>
+            <table border="1">
+                <tr>
+                    <th>ID</th> <th>Name</th> <th>Secret Name</th> <th>Age</th>
+                </tr>
+            {% for k in heroes %}
+                <tr>
+                    <td>{{ (k.id) }}</td> <td>{{ (k.name) }}</td> <td>{{ (k.secret_name) }}</td> <td>{{ (k.age) }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% endif %}
+
+    </ul>
+</body>
+</html>

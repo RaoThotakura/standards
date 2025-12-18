@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Webpage</title>
+        <script type="text/javascript">
+            function sendData (form) {
+                // const SCRIPT_ROOT = {{ request.script_root | tojson }};
+                const SCRIPT_ROOT = 'http://127.0.0.1:5000';
+                let update_url = `${SCRIPT_ROOT}/update`;
+
+                /**
+                * Does not work in Chrome
+                * let formData = new FormData(form);
+                * formData.append("name", document.getElementById("name").value);
+                * formData.append("secret_name",document.getElementById("secret_name").value );
+                * formData.append("age",document.getElementById("age").value );
+                 **/
+
+                 let formData = {
+                    id : document.getElementById("id").value,
+                    name : document.getElementById("name").value,
+                    secret_name :document.getElementById("secret_name").value,
+                    age : document.getElementById("age").value
+                 };
+                const response_content = document.getElementById("response-content");
+                fetch(update_url, {
+                    "method" : "POST",
+                    "headers": {"Content-Type": "application/json"},
+                    "body" : JSON.stringify(formData)
+                })
+                .then (response =>  response.json() )
+                .then (data => {
+                    response_content.innerText += "Updated received ...: "+"\n";
+                    response_content.innerText += data.response.name +"\n";
+                    response_content.innerText += data.response.age +"\n";
+                    response_content.innerText += data.response.secret_name
+                })
+                .catch ((error) => {
+                    response_content.innerHTML = "Error occured ..." + error
+                });
+            }
+            window.addEventListener("DOMContentLoaded", function() {
+                const form = document.getElementById("form");
+                form.addEventListener("submit", (event) => {
+                  event.preventDefault();
+                  sendData(form);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Third</h1><h2>Flask :: FastAPI :: Update</h2><h1>Webpage</h1>
+        <div>
+            Instructions
+            To start server : flask --app renderFlask run --debug
+        </div>
+        {% macro input(name, label, value='', type='text', size=20) -%}
+            <label for="{{ name }}">{{ label }}</label>
+            <input type="{{ type }}" name="{{ name }}" id="{{ name }}" value="{{ value|e }}" size="{{ size }}">
+        {%- endmacro %}
+        <form method=post id="form">
+          <fieldset>
+              {% if hero %}
+                  <div>{{ input('id', 'ID', hero.id) }}</div>
+                  <div>{{ input('name', 'Name', hero.name) }}</div>
+                  <div>{{ input('secret_name', 'Secret Name', hero.secret_name) }}</div>
+                  <div>{{ input('age', 'Age', hero.age) }}</div>
+              {% endif %}
+          </fieldset>
+          <p><input type=submit value=Update>
+        </form>
+        <div id="response-content"></div>
+    </body>
+</html>
