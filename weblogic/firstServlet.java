@@ -15,7 +15,7 @@ import javax.servlet.http.*;
 public class firstServlet extends HttpServlet {
 
     String username, password, query;
-    String host, port, sid, sl;
+    String host, port, sid, s1;
     Connection con = null;
     PrintWriter out = null;
 
@@ -26,7 +26,7 @@ public class firstServlet extends HttpServlet {
         query = "select empno EMPNO, ename NAME, job JOB, sal SALARY, dname DEPARTMENT, loc PLACE, hiredate HIREDATE FROM emp, dept where emp.deptno=dept.deptno";
         host = "maple";
         port = "1521";
-        sid = "PBSI";
+        sid = "RSI";
         s1 = "jdbc:oracle:thin:" + host + ":" + port + ":" + sid;
     }
 

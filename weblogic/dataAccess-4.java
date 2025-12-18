@@ -27,15 +27,17 @@ public class dataAccess extends JFrame {
     Connection conn = null;
     Statement stmt = null;
     ResultSet rs = null;
-    String sl, username, password, sid, host, port, query; int numCol, i;
+    String s1, username, password, sid, host, port, query; 
+    int numCol, i;
 
     public dataAccess() throws SQLException, Exception {
-        super ("Table Containing Employees of PBSI") ;
+        super ("Table Containing Employees of RSI") ;
         username = "scott";
         password = "tiger";
         query = "select empno EMPNO, ename NAME, job JOB, sal SALARY, dname DEPARTMENT, loc PLACE, to_char (hiredate, ' dd/mm/YVYY') HIREDATE FROM emp, dept where emp.deptno=dept.deptno";
         host = "maple";
         port = "1521";
+        sid="rsi";
         s1 = "jdbc:oracle:thin:@" + host + ":" + port + ":" + sid;
         rs = getTable();
         ResultSetMetaData rsd = rs.getMetaData();
@@ -43,8 +45,8 @@ public class dataAccess extends JFrame {
         for (i=1; i<=numCol; i++) {
             colheads.addElement(rsmd.getColumnLabel(i));
         }
-        while (rs.next ()) {
-            rows. addElement (getCurrentRow (rs, numCol) ):
+        while (rs.next()) {
+            rows.addElement(getCurrentRow(rs, numCol) ):
         }
         displayResultSet(rows, colheads);
     };

@@ -79,9 +79,9 @@ public class genericsvXml {
                             xmlStr = xmlStr + "</" + elementList.get(j) + ">" + "\n";
                         }
                         if (nextWord == null) {
-                            xmlStr = xmlStr + "\t" + "<" + elementList.get (j) + ">";
+                            xmlStr = xmlStr + "\t" + "<" + elementList.get(j) + ">";
                             xmlStr = xmlStr + " ";
-                            xmlStr = xmlStr + "</" + elementList.get (j) + ">" + "\n";
+                            xmlStr = xmlStr + "</" + elementList.get(j) + ">" + "\n";
                         }
                     }
                 }

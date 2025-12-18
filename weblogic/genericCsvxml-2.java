@@ -19,7 +19,7 @@ public class genericCsvxml {
         String subElement = argv[1];// Sub Element for each of data elements
         String csvFileName = argv[2]; // File Name of CSV flat file
         String xmlFileName = argv[3]; // File Name of output XML Document
-        String tagFileName = argv [4];// File Name of Map Document
+        String tagFileName = argv[4];// File Name of Map Document
 
         FileOutputStream xmlFile; // for writing the resulting XML document
 

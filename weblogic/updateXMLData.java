@@ -27,7 +27,7 @@ public class updateXMLData {
             conn = DriverManager.getConnection(s1, "scott", "tiger");
 
             //init a JDBC connection using Sun's JDBC-ODBC Bridge 
-            /*Class. forName ("sun. jdbc. odbc. JdbcOdbcDriver") ;
+            /*Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
             conn = DriverManager.getConnection (url, "scott", "tiger"); */
             
             //Instructions for updating the database rows from XML Document

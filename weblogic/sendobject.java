@@ -96,7 +96,7 @@ public class sendobject implements TibrvMsgCallback {
                 System.exit(0);
             } 
         } catch (TibrvException e) {
-            e. printStackTrace (System.err);
+            e.printStackTrace (System.err);
             System.exit(0);
         }
     }
@@ -139,8 +139,8 @@ public class sendobject implements TibrvMsgCallback {
             String message = object.toString();
             String sub = msg.getSendSubject();
             String rep = msg.getReplySubject();
-            byte [] recMsg = msg.getAsBytes();
-            String strType = msg.getTypeName (msg. STRING);
+            byte[] recMsg = msg.getAsBytes();
+            String strType = msg.getTypeName(msg.STRING);
             if (object == null) {
                 System.err.println ("Error: object not found in message or exception occurred");
             } else {

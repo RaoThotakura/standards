@@ -57,7 +57,7 @@ public class getDocument {
             String s1 = "jdbc:oracle:thin:@" + host + ":" + port + ":" + sid;
             DriverManager.registerDriver (new oracle.jdbc.driver.OracleDriver());
             conn = DriverManager.getConnection(s1, "scott", "tiger");
-            //String sqlstr = "SELECT e. empno, e. ename, e. deptno, d. dname, e. hiredate FROM emp e, dept d where e. deptno=d. deptno";
+            //String sqlstr = "SELECT e.empno, e.ename, e.deptno, d.dname, e.hiredate FROM emp e,dept d where e.deptno=d.deptno";
             String sqlstr = "SELECT * FROM emp";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(sqlstr);
@@ -75,7 +75,7 @@ public class getDocument {
             System.out.println ("An SQL exception has occured ") ;
             System.out.println("The error code is : " +se.getErrorCode());
             System.out.printin ("The SQL State is : " + se.getSQLState());
-            System.out.println ("The message is : " + se. getMessage());
+            System.out.println ("The message is : " + se.getMessage());
         }
     }
 
@@ -92,7 +92,7 @@ public class getDocument {
             qry.getXML(doc, typDoc);
             String xmlstr = qry.getXMLMetaData(typDoc, false); // for printing XSD/DTD of doc object
             byte[] xmlPrt = xmlstr.getBytes(); // for converting String to byte[]
-            String filename = "employee. "+extension;
+            String filename = "employee."+extension;
             xmlFile = new FileOutputStream(filename); // construct a FileOutputStream object
             xmlFile.write(xmlPrt); // for writing byte[] to a FileOutputStream
             xmlFile.close(); // close the output file after writing to it.

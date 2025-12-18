@@ -85,8 +85,8 @@ class PersonalData {
 *ーーーー*/
 
 public class sendobject implements TibrvMsgCallback {
-    String subject = "test.send.java.object":// Our test subject
-    String fieldName = "employee": // Field name we use to add object into TibrMsg
+    String subject = "test.send.java.object"; // Our test subject
+    String fieldName = "employee"; // Field name we use to add object into TibrMsg
     public sendobject (String[] args) {
         try {
             Tibrv.open(Tibrv.IMPL_NATIVE); // open Tibrv 

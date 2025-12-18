@@ -1,6 +1,5 @@
 /**
-Copyright (c) 1998-2000 TIBCO Software Inc.
-rights reserved.
+Copyright (c) 1998-2000 TIBCO Software Inc.rights reserved.
 TIB/Rendezvous protected under US Patent No. 5,187,787.
 For more information, please TIBCO Software Inc., Palo Alto, California, USA
 @ (#) tibrusend.java 1.3
