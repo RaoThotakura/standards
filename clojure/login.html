@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>First Login by Clojurescript</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Hello, Welcome to Clojure Family </h1>
+  <!-- Script 2.2 - login.html -->
+    <form action="authenticate" method="post" id="loginForm">
+        <fieldset>
+            <legend>Login</legend>
+            <div>
+              <label for="email">Email Address</label>
+              <input type="email" name="email" id="email"
+                     placeholder="email"
+                     title="Type a well formed email!"
+                     pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$"
+                     required>
+            </div>
+            <div>
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password"
+                     placeholder="password"
+                     pattern="^(?=.*\d).{4,8}$"
+                     title="Password is from 4 to 8 chars with 1 number!"
+                     required>
+            </div>
+            <div>
+              <label for="login"></label>
+              <input type="submit" value="Login &rarr;" id="login">
+            </div>
+        </fieldset>
+    </form>
+   <h2>Generation of Web Content Delivery Vehicles </h2>
+    <ol>
+	<li>HTML; Java Applet, Java AWT (Abstract Widget Toolkit)</li>
+	<li>HTML, CGI, PERL</li>
+	<li>ASP, VB, IIS</li>
+	<li>HTML, Server side JavaScript, Broadvision</li>
+	<li>Java, WebLogic, J2EE (Servlet, JSP, JNDI)</li>
+	<li>Java, ATG Dynamo (DSP, JHTML, Droplet)</li>
+	<li>Java, Apache Tomcat, JSP, Tag Library</li>
+	<li>Java, Apache Struts MVC (Tiles, JSTL)</li>
+	<li>Java, Stripes Framework (JSTL)</li>
+	<li>XML, XSD, XSLT, XForms</li>
+	<li>maxcode, XPT (xsd, xml, xslt based)</li>
+	<li>AWK, PERL, HTML, Files</li>
+	<li>Flash, Flex, AIR</li>
+	<li>HTML, AJAX</li>
+	<li>Microsoft .Net (VB.net, ASP.net, C#)</li>
+	<li>HTML, Linux, Apache, MySQL, PHP (LAMP)</li>
+	<li>Ruby, Rails, Embedded Ruby, DSL, Mongrel, WEBrick</li>
+	<li>Clojure, Clojurescript, Compojure, Ring, Domina, Hiccup, sablono, garden</li>
+    </ol-->
+    <script src="js/login.js"></script>
+    <script>
+      modern_cljs.login.regit();
+    </script>
+</body>
+</html>
