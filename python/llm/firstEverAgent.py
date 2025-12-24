@@ -1,5 +1,6 @@
 import os
 from langchain.agents import create_agent
+from langchain_openai import ChatOpenAI
 from dataclasses import dataclass
 from langchain.tools import tool, ToolRuntime
 from langchain.chat_models import init_chat_model
@@ -22,14 +23,32 @@ openai_api_base_url = os.getenv("OPENAI_API_BASE")
 print(f'OpenAI API Key: {openai_api_key}')
 print(f'OpenAI API Base URL: {openai_api_base_url}')
 
-model = init_chat_model(
-    model="gpt-4.1", #"gpt-4o",  # The model name
-    model_provider="openai",  # Explicitly state the provider
-    openai_api_base=os.getenv("OPENAI_API_BASE"),  # Custom API base URL if needed
-    openai_api_key=os.getenv("OPENAI_API_KEY"),  # Though env var is recommended
+# instantiate with a legacy model
+
+# model = init_chat_model(
+#     model="gpt-4.1", #"gpt-4o",  # The model name
+#     model_provider="openai",  # Explicitly state the provider
+#     openai_api_base=os.getenv("OPENAI_API_BASE"),  # Custom API base URL if needed
+#     openai_api_key=os.getenv("OPENAI_API_KEY"),  # Though env var is recommended
+#     temperature=0.5,
+#     timeout=10,
+#     max_tokens=1000
+# )
+
+# instantiate with a latest model using ChatOpenAI class
+
+model = ChatOpenAI(
+    model="gpt-5-nano",
+    stream_usage=True,
     temperature=0.5,
     timeout=10,
-    max_tokens=1000
+    max_tokens=1000,
+    reasoning_effort="low",
+    max_retries=2,
+    api_key=os.getenv("OPENAI_API_KEY"),  # If you prefer to pass api key in directly
+    base_url=os.getenv("OPENAI_API_BASE"),
+    # organization="...",
+    # other params...
 )
 
 @dataclass
