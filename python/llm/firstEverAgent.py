@@ -93,6 +93,7 @@ agent = create_agent(
 config = {"configurable": {"thread_id": "1"}}
 
 # agent.invoke gives a error response in HTML format with a openai.PermissionDeniedError
+# in both approaches using init_chat_model and ChatOpenAI class based model creation
 response = agent.invoke(
     {"messages": [{"role": "user", "content": "what is the weather outside?"}]},
     config=config,
