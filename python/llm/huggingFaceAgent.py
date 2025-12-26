@@ -1,5 +1,9 @@
 # HuggingFaceChatModel is locally accessible by means of a API
 # No pricing or cost involved
+# after a series of runs, the endpoint gives this error which means the monthly quota has reached for local access
+# Reference: https://discuss.huggingface.co/t/hugging-face-payment-error-402-youve-exceeded-monthly-quota/144968
+#requests.exceptions.HTTPError: 402 Client Error: Payment Required for url: https://router.huggingface.co/novita/v3/openai/chat/completion
+#
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from langchain.messages import (
     HumanMessage,
@@ -27,7 +31,7 @@ model = HuggingFaceEndpoint(
 chat_model = ChatHuggingFace(llm=model)
 
 # OpenAI Message prompts format
-
+#
 messages = [
     SystemMessage(content="You're a helpful assistant"),
     HumanMessage(
@@ -48,14 +52,14 @@ response = chat_model.invoke(conversation)
 print(f'AI Message: ', response)  # AIMessage("J'adore créer des applications.")
 print(f'Type of Message: ', type(response))
 
-# Tool calls
+#Tool calls
 
 @tool
 def get_weather(location: str) -> str:
     """Get the weather at a location."""
     return f"It's sunny in {location}."
 
-model_with_tools = chat_model.bind_tools([get_weather])
+model_with_tools = chat_model.bind_tool([get_weather])
 
 response = model_with_tools.invoke("What's the weather like in Boston?")
 for tool_call in response.tool_calls:
