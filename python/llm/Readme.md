@@ -69,7 +69,7 @@ chat_model = (ChatOllama(
 
 ---
 
-## 1. Why the paradox is a paradox
+#### 1. Why the paradox is a paradox
 
 | **Concept** | **Definition** | **Physical implication** |
 |-------------|----------------|--------------------------|
@@ -86,7 +86,7 @@ Thus, the two definitions are mutually exclusive. The paradox is a logical contr
 
 ---
 
-## 2. How physics resolves the paradox
+#### 2. How physics resolves the paradox
 
 | **Approach** | **What it tells us** |
 |--------------|----------------------|
@@ -99,7 +99,7 @@ In short, the laws of physics preclude the simultaneous existence of an unstoppa
 
 ---
 
-## 3. Philosophical and literary interpretations
+#### 3. Philosophical and literary interpretations
 
 | **Interpretation** | **Key idea** |
 |--------------------|--------------|
@@ -109,7 +109,7 @@ In short, the laws of physics preclude the simultaneous existence of an unstoppa
 
 ---
 
-## 4. A playful “what if” scenario
+#### 4. A playful “what if” scenario
 
 If we imagine a universe where:
 
@@ -120,7 +120,7 @@ Then the “meeting” would be a photon approaching a black hole. The photon ca
 
 ---
 
-## 5. Bottom line
+#### 5. Bottom line
 
 - **In physics**: The scenario is impossible. The definitions contradict each other and violate conservation laws.
 - **In philosophy/literature**: The paradox is a useful tool for exploring themes of inevitability, resistance, and the limits of human understanding.
