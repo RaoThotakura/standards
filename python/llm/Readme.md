@@ -21,7 +21,6 @@ model = ChatOpenAI(
     # other params...
 )
 
-
 huggingFaceAgent.py
 
 HuggingFaceChatModel is locally accessible by means of a API
@@ -40,6 +39,7 @@ model = HuggingFaceEndpoint(
     repetition_penalty=1.03,
     provider="auto",  # let Hugging Face choose the best provider for you
 )
+
 chat_model_microsoft = init_chat_model(
     "microsoft/Phi-3-mini-4k-instruct",
     model_provider="huggingface",
@@ -57,6 +57,7 @@ chat_model = (ChatOllama(
     validate_model_on_init=True,
     temperature=0,
 ))
+
 /Users/raothotakura/Documents/Samples/autoDCD/python/.venv/lib/python3.14/site-packages/langchain_core/_api/deprecation.py:26: UserWarning: Core Pydantic V1 functionality isn't compatible with Python 3.14 or greater.
   from pydantic.v1.fields import FieldInfo as FieldInfoV1
 
