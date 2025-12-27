@@ -1,8 +1,5 @@
 # HuggingFaceChatModel is locally accessible by means of a API
 # No pricing or cost involved
-# after a series of runs, the endpoint gives this error which means the monthly quota has reached for local access
-# Reference: https://discuss.huggingface.co/t/hugging-face-payment-error-402-youve-exceeded-monthly-quota/144968
-#requests.exceptions.HTTPError: 402 Client Error: Payment Required for url: https://router.huggingface.co/novita/v3/openai/chat/completion
 #
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from langchain.messages import (
@@ -19,6 +16,10 @@ os.getenv("HUGGINGFACEHUB_API_KEY")
 # from huggingface_hub import login
 # login()  # You will be prompted for your HF key, which will then be saved locally
 
+# after a series of runs, the endpoint gives this error which means the monthly quota has reached for local access
+# Reference: https://discuss.huggingface.co/t/hugging-face-payment-error-402-youve-exceeded-monthly-quota/144968
+#requests.exceptions.HTTPError: 402 Client Error: Payment Required for url: https://router.huggingface.co/novita/v3/openai/chat/completion
+
 model = HuggingFaceEndpoint(
     repo_id="deepseek-ai/DeepSeek-R1-0528",
     task="text-generation",
@@ -30,6 +31,29 @@ model = HuggingFaceEndpoint(
 
 chat_model = ChatHuggingFace(llm=model)
 
+# Model instantiation with a different model
+# Takes too long even in both approaches
+from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
+
+model = HuggingFaceEndpoint(
+    repo_id="microsoft/Phi-3-mini-4k-instruct",
+    temperature=0.7,
+    task="text-generation",
+    max_new_tokens=512,
+    do_sample=False,
+    repetition_penalty=1.03,
+    provider="auto",  # let Hugging Face choose the best provider for you
+)
+chat_model = ChatHuggingFace(llm=model)
+
+from langchain.chat_models import init_chat_model
+
+chat_model_microsoft = init_chat_model(
+    "microsoft/Phi-3-mini-4k-instruct",
+    model_provider="huggingface",
+    temperature=0.7,
+    max_tokens=1024,
+)
 # OpenAI Message prompts format
 #
 messages = [
