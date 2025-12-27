@@ -2,11 +2,10 @@
 RESPONSES
 
 firstEventAgent.py
-#################
 
-# agent.invoke gives a error response in HTML format with a openai.PermissionDeniedError
-# in both approaches using init_chat_model and ChatOpenAI class based model creation
-# OpenAI has no free access.
+agent.invoke gives a error response in HTML format with a openai.PermissionDeniedError
+in both approaches using init_chat_model and ChatOpenAI class based model creation
+OpenAI has no free access.
 
 model = ChatOpenAI(
     model="gpt-5-nano",
@@ -24,15 +23,14 @@ model = ChatOpenAI(
 
 
 huggingFaceAgent.py
-#################
 
-# HuggingFaceChatModel is locally accessible by means of a API
-# No pricing or cost involved. But the free access is limited on a monthly basis
+HuggingFaceChatModel is locally accessible by means of a API
+No pricing or cost involved. But the free access is limited on a monthly basis
 
 
-# after a series of runs, the endpoint gives this error which means the monthly quota has reached for local access
-# Reference: https://discuss.huggingface.co/t/hugging-face-payment-error-402-youve-exceeded-monthly-quota/144968
-# requests.exceptions.HTTPError: 402 Client Error: Payment Required for url: https://router.huggingface.co/novita/v3/openai/chat/completion
+after a series of runs, the endpoint gives this error which means the monthly quota has reached for local access
+Reference: https://discuss.huggingface.co/t/hugging-face-payment-error-402-youve-exceeded-monthly-quota/144968
+requests.exceptions.HTTPError: 402 Client Error: Payment Required for url: https://router.huggingface.co/novita/v3/openai/chat/completion
 
 model = HuggingFaceEndpoint(
     repo_id="deepseek-ai/DeepSeek-R1-0528",
@@ -50,10 +48,10 @@ chat_model_microsoft = init_chat_model(
 )
 
 ollamaOssAgent.py
-#################
 
-# This model works locally without any API Key.
-# the model is installed into ~/ollama/models using a CLI
+This model works locally without any API Key.
+the model is installed into ~/ollama/models using a CLI
+
 chat_model = (ChatOllama(
     model="gpt-oss:20b",
     validate_model_on_init=True,
