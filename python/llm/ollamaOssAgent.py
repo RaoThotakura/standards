@@ -1,4 +1,5 @@
 from typing import List
+
 from langchain.messages import AIMessage
 from langchain.tools import tool
 from langchain_ollama import ChatOllama
@@ -37,6 +38,7 @@ chat_model = (ChatOllama(
     validate_model_on_init=True,
     temperature=0,
 ))
+
 chat_model.bind_tools([validate_user])
 
 result = chat_model.invoke(
