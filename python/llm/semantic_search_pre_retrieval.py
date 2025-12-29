@@ -1,3 +1,5 @@
+import asyncio
+
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
@@ -51,7 +53,11 @@ async def similarity(search_str):
     results = await vectorstore.asimilarity_search(search_str)
     print(f"Results from similar text - asynchronous {results[0]}")
 
-similarity(queries['2'])
+asyncio.run(similarity(queries['2']))
+
+
+# results = vectorstore.asimilarity_search(queries['2'])
+print(f"Results from similar text - asynchronous {results[0]}")
 
 # Note that providers implement different scores; the score here
 # is a distance metric that varies inversely with similarity.

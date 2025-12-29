@@ -147,7 +147,10 @@ semantic_search_pre_retrieval.py
 Generated vectors of length 4096
 
 [-0.004283323, -0.029123468, -0.013847927, 0.004041289, -0.005853984, -0.025666876, -0.0069365455, -0.00687183, -0.034450404, -0.0008472501]
-Results from similar text - synchronous page_content='Table of Contents
+
+Results from similar text - synchronous 
+
+page_content='Table of Contents
 INTERNATIONAL MARKETS
 For fiscal 2023, non-U.S. NIKE Brand and Converse sales accounted for approximately 57% of total revenues, compared to 60% and 61% for fiscal 2022 and fiscal 2021,
 respectively. We sell our products to retail accounts through our own NIKE Direct operations and through a mix of independent distributors, licensees and sales
@@ -156,12 +159,35 @@ Properties for further information on distribution facilities outside of the Uni
 accounted for approximately 14% of total non-U.S. sales.
 In addition to NIKE-owned and Converse-owned digital commerce platforms in over 40 countries, our NIKE Direct and Converse direct to consumer businesses operate
 the following number of retail stores outside the United States:' metadata={'producer': 'EDGRpdf Service w/ EO.Pdf 22.0.40.0', 'creator': 'EDGAR Filing HTML Converter', 'creationdate': '2023-07-20T16:22:00-04:00', 'title': '0000320187-23-000039', 'author': 'EDGAR Online, a division of Donnelley Financial Solutions', 'subject': 'Form 10-K filed on 2023-07-20 for the period ending 2023-05-31', 'keywords': '0000320187-23-000039; ; 10-K', 'moddate': '2023-07-20T16:22:08-04:00', 'source': '../example_data/nke-10k-2023.pdf', 'total_pages': 107, 'page': 5, 'page_label': '6', 'start_index': 0}
-/Users/raothotakura/Documents/Samples/autoDCD/python/llm/semantic_search_pre_retrieval.py:54: RuntimeWarning: coroutine 'similarity' was never awaited
-  similarity(queries['2'])
-RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+
+Results from similar text - asynchronous 
+
+page_content='Table of Contents
+INTERNATIONAL MARKETS
+For fiscal 2023, non-U.S. NIKE Brand and Converse sales accounted for approximately 57% of total revenues, compared to 60% and 61% for fiscal 2022 and fiscal 2021,
+respectively. We sell our products to retail accounts through our own NIKE Direct operations and through a mix of independent distributors, licensees and sales
+representatives around the world. We sell to thousands of retail accounts and ship products from 67 distribution centers outside of the United States. Refer to Item 2.
+Properties for further information on distribution facilities outside of the United States. During fiscal 2023, NIKE's three largest customers outside of the United States
+accounted for approximately 14% of total non-U.S. sales.
+In addition to NIKE-owned and Converse-owned digital commerce platforms in over 40 countries, our NIKE Direct and Converse direct to consumer businesses operate
+the following number of retail stores outside the United States:' metadata={'producer': 'EDGRpdf Service w/ EO.Pdf 22.0.40.0', 'creator': 'EDGAR Filing HTML Converter', 'creationdate': '2023-07-20T16:22:00-04:00', 'title': '0000320187-23-000039', 'author': 'EDGAR Online, a division of Donnelley Financial Solutions', 'subject': 'Form 10-K filed on 2023-07-20 for the period ending 2023-05-31', 'keywords': '0000320187-23-000039; ; 10-K', 'moddate': '2023-07-20T16:22:08-04:00', 'source': '../example_data/nke-10k-2023.pdf', 'total_pages': 107, 'page': 5, 'page_label': '6', 'start_index': 0}
+
+Results from similar text - asynchronous 
+
+page_content='Table of Contents
+INTERNATIONAL MARKETS
+For fiscal 2023, non-U.S. NIKE Brand and Converse sales accounted for approximately 57% of total revenues, compared to 60% and 61% for fiscal 2022 and fiscal 2021,
+respectively. We sell our products to retail accounts through our own NIKE Direct operations and through a mix of independent distributors, licensees and sales
+representatives around the world. We sell to thousands of retail accounts and ship products from 67 distribution centers outside of the United States. Refer to Item 2.
+Properties for further information on distribution facilities outside of the United States. During fiscal 2023, NIKE's three largest customers outside of the United States
+accounted for approximately 14% of total non-U.S. sales.
+In addition to NIKE-owned and Converse-owned digital commerce platforms in over 40 countries, our NIKE Direct and Converse direct to consumer businesses operate
+the following number of retail stores outside the United States:' metadata={'producer': 'EDGRpdf Service w/ EO.Pdf 22.0.40.0', 'creator': 'EDGAR Filing HTML Converter', 'creationdate': '2023-07-20T16:22:00-04:00', 'title': '0000320187-23-000039', 'author': 'EDGAR Online, a division of Donnelley Financial Solutions', 'subject': 'Form 10-K filed on 2023-07-20 for the period ending 2023-05-31', 'keywords': '0000320187-23-000039; ; 10-K', 'moddate': '2023-07-20T16:22:08-04:00', 'source': '../example_data/nke-10k-2023.pdf', 'total_pages': 107, 'page': 5, 'page_label': '6', 'start_index': 0}
 Score: 0.6461532714115137
 
-Results from similar search with score: page_content='Table of Contents
+Results from similar search with score: 
+
+page_content='Table of Contents
 INTERNATIONAL MARKETS
 For fiscal 2023, non-U.S. NIKE Brand and Converse sales accounted for approximately 57% of total revenues, compared to 60% and 61% for fiscal 2022 and fiscal 2021,
 respectively. We sell our products to retail accounts through our own NIKE Direct operations and through a mix of independent distributors, licensees and sales
