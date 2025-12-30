@@ -3,9 +3,10 @@ import asyncio
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
-from langchain_core.vectorstores import InMemoryVectorStore
+from langchain_postgres import PGVector
 
-# Utilize RAM based vectorstore called InMemoryVectorStore
+# Utilize Postgres DB Container based vector store called PGVector
+# This program needs a docker instance running in order to host the Postgres vector (PGVector) Container
 
 # SEARCH STRINGS
 queries =dict([
@@ -42,38 +43,51 @@ assert len(vector_1) == len(vector_2)
 print(f"Generated vectors of length {len(vector_1)}\n")
 print(vector_1[:10])
 
-# VECTORSTORE
+# Expects a list of Document object
+# embedded_documents = embeddings.embed_documents(all_splits)
+# print(embedded_documents)
 
-# Create a vector store with the embeddings reference by add_documents approach
-# This approach will store entire chunks that were created by text splitter
-# Using InMemoryVectorStore which is RAM intensive and very slow
+# See docker command above to launch a postgres instance with pgvector enabled.
+connection = "postgresql+psycopg://langchain:langchain@localhost:6024/langchain"  # Uses psycopg3!
+collection_name = "my_docs"
 
-vectorstore= InMemoryVectorStore(embeddings)
+vector_store = PGVector(
+    embeddings=embeddings,
+    collection_name=collection_name,
+    connection=connection,
+    use_jsonb=True,
+)
 
-# Retrieve the most similar text - synchronous
-results = vectorstore.similarity_search(queries['1'])
+ids = vector_store.add_documents(documents=all_splits)
+
+results = vector_store.similarity_search(queries['1'])
 print(f"Results from similar text - synchronous {results[0]}")
-
-# Retrieve the most similar text - asynchronous
-async def similarity(search_str):
-    results = await vectorstore.asimilarity_search(search_str)
-    print(f"Results from similar text - asynchronous {results[0]}")
-
-asyncio.run(similarity(queries['2']))
-
-
-# results = vectorstore.asimilarity_search(queries['2'])
-print(f"Results from similar text - asynchronous {results[0]}")
 
 # Note that providers implement different scores; the score here
 # is a distance metric that varies inversely with similarity.
 # Return scores:
-results = vectorstore.similarity_search_with_score(queries['3'])
+results = vector_store.similarity_search_with_score(queries['3'])
 doc, score = results[0]
 print(f"Score: {score}\n")
 print(f"Results from similar search with score: {doc}")
 
 # Return documents based on similarity to an embedded query:
 embedding = embeddings.embed_query(queries['4'])
-results = vectorstore.similarity_search_by_vector(embedding)
+results = vector_store.similarity_search_by_vector(embedding)
 print(f"Results from similarity to an embedded query: {results[0]}")
+
+# Retrieve the most similar text - asynchronous
+# async def similarity(search_str):
+#     results = await vector_store.asimilarity_search(search_str)
+#     print(f"Results from similar text - asynchronous {results[0]}")
+#
+# asyncio.run(similarity(queries['2']))
+
+async def similar_search(search_str):
+    docs = await vector_store.asimilarity_search(search_str)
+    for doc in docs:
+        print(repr(doc))
+    # print(f"Results from similar text - asynchronous {results[0]}")
+
+asyncio.run(similar_search(queries['2']))
+
