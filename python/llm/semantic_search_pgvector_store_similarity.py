@@ -87,7 +87,6 @@ SCHEMA_NAME="public"
 
 # asynchronous
 async def setup_pgvector_store():
-# def setup_pgvector_store():
     # Await the function call to get the result and assign it to a variable
     # asynchronous
     try:
