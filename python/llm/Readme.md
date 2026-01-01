@@ -5,18 +5,31 @@ Below study gives an idea of whether a Embedding Model requires API key or not.
 If a API key is required, then it is available as a remote resource.
 
 CohereEmbeddings - requires API Key
+
 TogetherEmbeddings - requires API Key
+
 FireworksEmbeddings - requires API Key
+
 MistralAIEmbeddings - requires API Key
+
 NomicEmbeddings - requires API Key
+
 WatsonxEmbeddings - requires API Key
+
 NVIDIAEmbeddings - requires API Key
+
 AimlapiEmbeddings - requires API Key
+
 GoogleGenerativeAIEmbeddings - requires API Key
+
 AzureOpenAIEmbeddings - requires API Key
+
 OpenAIEmbeddings - requires API Key
+
 DatabricksEmbeddings - requires API Key
+
 OllamaEmbeddings - does not require API Key
+
 FakeEmbeddings - does not require API Key
 
 
