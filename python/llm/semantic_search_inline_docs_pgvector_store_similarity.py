@@ -1,12 +1,12 @@
 import asyncio, os, uuid
 from langchain_core.documents import Document
-from langchain_ollama import OllamaEmbeddings
+from langchain_community.embeddings import FakeEmbeddings
 from langchain_postgres import PGEngine, PGVectorStore
-
 from sqlalchemy.ext.asyncio import create_async_engine
 from langchain_postgres import Column
 from langchain_cohere import CohereEmbeddings
 from dotenv import load_dotenv
+
 load_dotenv()
 cohere_api_key = os.getenv("COHERE_API_KEY")
 
