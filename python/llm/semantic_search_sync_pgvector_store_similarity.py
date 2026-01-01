@@ -1,10 +1,11 @@
 import asyncio
 import os
+import uuid
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
-from langchain_postgres import PGVector, PGEngine, PGVectorStore
+from langchain_postgres import PGVector, PGEngine, PGVectorStore, Column
 from sqlalchemy.exc import ProgrammingError
 
 from langchain_cohere import CohereEmbeddings
@@ -41,7 +42,9 @@ print(len(all_splits))
 
 # EMBEDDING
 
-embeddings = OllamaEmbeddings(model="llama3")
+# embeddings = OllamaEmbeddings(model="llama3")
+#
+embeddings = CohereEmbeddings(model="embed-english-v3.0")
 
 # Direct embed a text(s) as a query
 vector_1 = embeddings.embed_query(all_splits[0].page_content)
@@ -55,6 +58,7 @@ print(vector_1[:10])
 # embedded_documents = embeddings.embed_documents(all_splits)
 # print(embedded_documents)
 
+
 # See docker command to launch a postgres instance with pgvector enabled. This is for synchronous connection
 # connection = "postgresql+psycopg://langchain:langchain@localhost:6024/langchain"  # Uses psycopg3!
 # docker CLI: docker run --name pgvector-container -e POSTGRES_USER=langchain -e POSTGRES_PASSWORD=langchain -e POSTGRES_DB=langchain -p 6024:5432 -d pgvector/pgvector:pg16
@@ -67,7 +71,7 @@ POSTGRES_PASSWORD = "langchain"  # @param {type: "string"}
 POSTGRES_HOST = "localhost"  # @param {type: "string"}
 POSTGRES_PORT = "6024"  # @param {type: "string"}
 POSTGRES_DB = "langchain"  # @param {type: "string"}
-TABLE_NAME = "custom_x_vectorstore"  # @param {type: "string"}
+TABLE_NAME = "custom_test_vectorstore"  # @param {type: "string"}
 VECTOR_SIZE = 1024  # @param {type: "int"}
 # synchronous
 CONNECTION_STRING = (
@@ -83,12 +87,11 @@ pg_engine = PGEngine.from_connection_string(
 
 vector_store = PGVectorStore.create_sync(
     engine=pg_engine,
-    table_name='test_similarity_search_table',
+    table_name=TABLE_NAME,
     embedding_service=embeddings
 )
 SCHEMA_NAME="public"
-embedding = CohereEmbeddings(model="embed-english-v3.0")
-#
+
 # synchronous
 def setup_pgvector_store():
     # Await the function call to get the result and assign it to a variable
@@ -98,22 +101,35 @@ def setup_pgvector_store():
             table_name=TABLE_NAME,
             vector_size=VECTOR_SIZE,
             schema_name=SCHEMA_NAME,    # Default: "public"
+            id_column=Column(name="langchain_id", data_type="VARCHAR"),
+            overwrite_existing=True
         )
     except ProgrammingError as e:
-        await pg_engine.adrop_table(TABLE_NAME)
         print("Table already exists. Skipping creation.")
-    embedding = CohereEmbeddings(model="embed-english-v3.0")
+
+
     # synchronous
     custom_vector_store = PGVectorStore.create(
         engine=pg_engine,
         table_name=TABLE_NAME,
         schema_name=SCHEMA_NAME,
-        embedding_service=embedding,
-        metadata_columns=["len"],
+        embedding_service=embeddings
+        # metadata_columns=["len"],
     )
 
     print(f"Received: {custom_vector_store}")
-    ids = custom_vector_store.add_documents(documents=all_splits)
+    try:
+        ids = [str(uuid.uuid4()) for _ in all_splits]
+        records = (custom_vector_store.add_documents(documents=all_splits,ids=ids))
+    except Exception as exc:
+        print(f"RuntimeError while adding documents into vector store {exc=}, {type(exc)=}")
+
+    # RuntimeError while adding documents into vector store exc=TooManyRequestsError(),
+    # type(exc)= < class 'cohere.errors.too_many_requests_error.TooManyRequestsError' >
+    # Same error is reported in asynchronous mode.
+    # For now cohere embeddings issue with how many records that PGVectorStore extension can consume without back pressure
+
+    # print(f"Records added: {records}")
 
     results = custom_vector_store.similarity_search(queries['1'])
     print(f"Results from similar text - synchronous {results[0]}")
