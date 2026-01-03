@@ -1,12 +1,24 @@
 import asyncio
-# from langchain_community.embeddings import FakeEmbeddings
 from langchain_core.vectorstores import InMemoryVectorStore
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+
 from langchain_core.embeddings import DeterministicFakeEmbedding
+
+# Facebook AI Similarity Search (FAISS) Usage
+import faiss
+from langchain_community.docstore.in_memory import InMemoryDocstore
+from langchain_community.vectorstores import FAISS
 
 # Embedding Model
 embeddings = DeterministicFakeEmbedding(size=4096)
+
+# Usage BedrockEmbeddings from AWS
+# Installation steps
+# pip install -qU langchain-aws
+# Requires AWS cloud account credentials
+# from langchain_aws import BedrockEmbeddings
+# embeddings = BedrockEmbeddings(model_id="amazon.titan-embed-text-v2:0",  region_name="us-east-1")
 
 # SEARCH STRINGS
 queries =dict([
@@ -28,6 +40,7 @@ text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000, chunk_overlap=200, add_start_index=True
 )
 all_splits = text_splitter.split_documents(docs)
+
 # Resolution for error message: exc=AttributeError("'Document' object has no attribute 'encode'"), type(exc)=<class 'AttributeError'>
 # Changes needed after utilizing DeterministicFakeEmbedding
 all_splits_strings = [doc.page_content for doc in all_splits]
@@ -38,8 +51,16 @@ print(len(all_splits_strings))
 
 # Create a vector store with the embeddings reference by add_documents approach
 # This approach will store entire chunks that were created by text splitter
-# Using InMemoryVectorStore which is RAM intensive and very slow
 try:
+    index = faiss.IndexFlatL2(len(embeddings.embed_query(queries['1'])))
+
+    vector_store = FAISS(
+        embedding_function=embeddings,
+        index=index,
+        docstore=InMemoryDocstore(),
+        index_to_docstore_id={},
+    )
+
     custom_vector_store= InMemoryVectorStore(embeddings)
     results = embeddings.embed_documents(all_splits_strings) # gives  exc=AttributeError("'Document' object has no attribute 'encode'"), type(exc)=<class 'AttributeError'>
 except Exception as exc:
