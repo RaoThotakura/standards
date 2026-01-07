@@ -18,7 +18,9 @@ VectorStores: InMemoryVectorStore, PGVector, PGVectorStore, FAISS, Chroma,
 
 Embedding Models: OpenAI, Ollama, HuggingFace, Cohere, DeterministicFakeEmbedding, DeepSeek, NVIDIA.
 
-Concepts covered: Semantic Search, Document Loader, Text Splitters, Models, Messages, Tools, Agents, RAG Agent, Structured Outpu
-https://github.com/RaoThotakura/standards/tree/master/python/llm
+Concepts covered: Semantic Search, Document Loader, Text Splitters, Models, Messages, Tools, Agents, RAG Agent, 
+Structured Output.
+
+Path: https://github.com/RaoThotakura/standards/tree/master/python/llm
 
 Note: For more hypothetical enlargement, navigate to the wiki section of the repository.
