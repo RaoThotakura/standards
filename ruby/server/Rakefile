@@ -1,0 +1,6 @@
+#require(File.join(File.dirname(_FILE_),'config','boot'))
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+#require 'tasks/rails'
+require db:migrate

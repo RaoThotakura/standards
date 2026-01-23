@@ -1,0 +1,27 @@
+<div id="content"  ng-controller="CreditListController" pic="sai">
+	<h2>Angular MVC Framework</h2>
+	<p>
+		<%= label(:search, :credit, "Search") %><br>
+		<input id="search_credit" name="search[credit]" size="30" type="text" ng-model="search">
+	</p>
+	<p>
+		<%= label(:sort, :credit, "Sort by") %><br>						
+		<select id="sort_credit" name="sort[credit]" ng-model="orderProp">
+		  <option value="code">Abbreviational</option>
+		  <option value="name">Alphabetical</option>
+		</select>
+	</p>
+	<table border="1">
+		<tr ng-repeat="credit in credits | filter:search | orderBy : orderProp">
+			<td>{{ credit.code }}</td>
+			<td>{{ credit.name }}</td>
+		</tr>
+	</table>
+	<table border=1>
+		<tr ng-repeat="i in [20,22,24,30,32,34,40,42,44,50,52,54,60,65,70,73]">
+			<td>{{i}} * 2025 =</td>
+			<td>{{ i * 2025 }}</td>
+		</tr>
+	</table>			
+	<p>Total credits : {{ credits.length }}</p>			
+</div>

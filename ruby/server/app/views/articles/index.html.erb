@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>Ruby on Rails: RAO Please welcome aboard</title>
+	<%= stylesheet_link_tag "articles/styles.css", :media => "screen", :cache => false %>
+    <%= javascript_include_tag 'articles/prototype.js', :cache => false %>
+	<%= javascript_include_tag 'articles/effects.js', :cache => false %>
+  </head>
+  <body>
+    <div id="page">
+      <div id="content">
+        <div id="header" class="header">
+          <h1>Welcome aboard</h1>
+          <h2>You&rsquo;re riding Ruby on Rails!</h2>
+        </div>
+		<div id="header" class="rao">
+			<h3>Nicely done!</h3>
+			<h1>Mr.Rao S. Thotakura</h1>			
+		</div>
+        
+        <div id="getting-started">
+          <h1>Getting started</h1>
+          <h2>Here&rsquo;s how to get rolling:</h2>	
+			
+			<table border="1" cellpadding="5" cellspacing="5">
+			<tr>
+				<td>Title</td>
+				<td><%=@article[:title]%></td>
+			</tr>
+			<tr>
+				<td>Title text</td>
+				<td><%= @article[:text] %></td>
+			</tr>
+			</table>
+			
+		</div>
+      </div>
+      <div id="footer">&nbsp;</div>
+    </div>
+  </body>
+</html>

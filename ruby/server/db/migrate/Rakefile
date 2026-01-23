@@ -1,0 +1,27 @@
+#!/usr/bin/ruby
+require 'rubygems'
+require 'active_record'
+require 'sqlite3'
+require 'active_support/all'
+
+db_namespace = namespace :db do
+
+ task :migrate do
+	loaded = ActiveRecord::Migration.migrate(':up')
+	raise 'ActiveRecord is not loaded' if loaded.nil?
+	raise "ActiveRecord is not loaded : #{loaded.present?} : #{loaded.nil?}"
+    #db_namespace['_dump'].invoke if ActiveRecord::Base.dump_schema_after_migration
+  end
+  task :up do
+      version = ENV['VERSION'] ? ENV['VERSION'].to_i : nil
+      raise 'VERSION is required' unless version
+      ActiveRecord::Migration.run(:up, ActiveRecord::Migration.migrations_paths, version)
+      db_namespace['_dump'].invoke
+  end
+  task :down => [:environment, :load_config] do
+      version = ENV['VERSION'] ? ENV['VERSION'].to_i : nil
+      raise 'VERSION is required - To go down one migration, run db:rollback' unless version
+      ActiveRecord::Migration.run(:down, ActiveRecord::Migration.migrations_paths, version)
+      db_namespace['_dump'].invoke
+   end  
+end

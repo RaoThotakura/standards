@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html ng-app="creditListApp">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>First AJAX on Rails</title>	
+	<%= stylesheet_link_tag "articles/styles.css", :media => "screen", :cache => false %>
+    <%= javascript_include_tag 'articles/prototype.js', :cache => false %>
+	<%= javascript_include_tag 'articles/effects.js', :cache => false %>
+	
+	<%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js' %>
+	<%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.js' %>
+	
+	<%= javascript_include_tag 'articles/controllers.js', :cache => false %>
+	
+    <script type="text/javascript">
+      function about() {
+        if (Element.empty('about-content')) {
+          new Ajax.Updater('about-content', 'info/properties', {
+            method:     'get',
+            onFailure:  function() {
+				Element.classNames('about-content').add('failure')
+			},
+            onComplete: function() {
+				new Effect.BlindDown('about-content', {duration: 0.25})
+			}
+          });
+        } else {
+          new Effect[Element.visible('about-content') ? 
+            'BlindUp' : 'BlindDown']('about-content', {duration: 0.25});
+        }
+      }
+	 function live(article_form) {
+        if (Element.empty('live-content')) {
+          new Ajax.Updater('live-content', 'content', {
+            method:     'post',
+            onFailure:  function() {
+				Element.classNames('live-content').add('failure')
+			},
+            onComplete: function() {
+				new Effect.BlindDown('live-content', {duration: 0.25})
+			},
+			parameters: Form.serialize(article_form)
+          });
+        } else {
+          new Effect[Element.visible('live-content') ? 
+            'BlindUp' : 'BlindDown']('live-content', {duration: 0.25});
+        }
+      }	  
+    </script>
+  </head>
+  <body>
+       <div id="content">
+        <div id="header" class="header">
+          <h1>Welcome aboard</h1>
+          <h2>You&rsquo;re riding Ruby on Rails!</h2>
+        </div>
+		<div id="header" class="rao">
+			<h3>Welcome</h3>
+			<h1>Mr.Rao S. Thotakura</h1>	
+		</div> 
+		<% form_for :article, @article, :url => {:action => "content"}, :html => {:id => 'person_form', :onsubmit => 'live(this); return false;'} do |article_form| %>
+			<p>
+				<%= article_form.label :title, "Title of Article" %><br>
+				<%= article_form.text_field :title %>
+			</p>
+			<p>
+				<%= article_form.label :text, "Article Text" %><br>
+				<%= article_form.text_area :text %>
+			</p>
+			<p>
+				<%= article_form.submit :Submit%>
+			</p>
+		<% end %>
+		</div>
+		 <div id="content">
+			<% form_tag('retrieve',:method => :post) do -%>
+				<div><%= submit_tag 'About your application&rsquo;s environment', :onclick => 'about(); return false;'%></div>
+			<% end -%>
+		</div>
+		<div id="content">
+			<div id="about">
+				<h3><a href="info/properties/" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
+					<div id="about-content" style="display: none">
+				</div>
+			</div>		
+		</div>
+		<div id="content">
+			<div id="live">
+				<div id="live-content" style="display: none"></div>
+			</div>		
+		</div>
+		<div id="content" ng-controller="CreditListController" pic="sai">
+			<h2>Angular MVC Framework</h2>
+			<p>
+				<%= label(:search, :credit, "Search") %><br>
+				<input id="search_credit" name="search[credit]" size="30" type="text" ng-model="search">
+			</p>
+			<p>
+				<%= label(:sort, :credit, "Sort by") %><br>						
+				<select id="sort_credit" name="sort[credit]" ng-model="orderProp">
+				  <option value="code">Abbreviational</option>
+				  <option value="name">Alphabetical</option>
+				</select>
+			</p>
+			<table border="1">
+				<tr ng-repeat="credit in credits | filter:search | orderBy : orderProp">
+					<td><img ng-src="{{ credit.name | checkmark }}"></td>
+					<td>{{ credit.code }}</td>
+					<td>{{ credit.name }}</td>
+				</tr>
+			</table>
+			<table border=1>
+				<tr ng-repeat="i in [20,22,24,30,32,34,40,42,44,50,52,54,60,65,70,73]">
+					<td>{{i}} * 2025 =</td>
+					<td>{{ i * 2025 }}</td>
+				</tr>
+			</table>			
+			<p>Total credits : {{ credits.length }}</p>			
+		</div>
+		
+		<div id="content" ng-controller="CreditListControllerII" pic="sai">
+			<h2>Angular MVC Framework with CREDIT high level service</h2>
+			<p>
+				<%= label(:search, :credit, "Search") %><br>
+				<input id="search_credit" name="search[credit]" size="30" type="text" ng-model="search">
+			</p>
+			<p>
+				<%= label(:sort, :credit, "Sort by") %><br>						
+				<select id="sort_credit" name="sort[credit]" ng-model="orderProp">
+				  <option value="code">Abbreviational</option>
+				  <option value="name">Alphabetical</option>
+				</select>
+			</p>
+			<table border="1">
+				<tr ng-repeat="credit in credits | filter:search | orderBy : orderProp">
+					<td><img ng-src="{{ credit.name | checkmark }}"></td>
+					<td>{{ credit.code }}</td>
+					<td>{{ credit.name }}</td>
+				</tr>
+			</table>
+						
+			<p>Total credits : {{ credits.length }}</p>			
+		</div>		
+  </body>
+</html>

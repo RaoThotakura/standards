@@ -1,0 +1,22 @@
+require 'rubygems'
+require 'active_record'
+class Articles < ActiveRecord::Migration
+  def change
+     create_table :articles do |t|
+      t.string :title
+      t.text :text
+
+      t.timestamps
+    end 
+  end
+  def self.up
+     create_table :articles do |t|
+      t.string :title
+      t.text :text
+      t.timestamps
+    end 
+  end
+
+  def self.down
+  end
+end
